@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MS Gestão & Tecnologia — Consultoria Empresarial e de TI</title>
+<meta name="description" content="Consultoria em gestão empresarial e tecnologia da informação para empresas e órgãos públicos. Atuação em PR, MS e SP.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --azul:        #1B5E96;
+  --azul-escuro: #144878;
+  --azul-claro:  #4AAEE8;
+  --verde:       #1DAF6E;
+  --verde-escuro:#17935c;
+  --verde-claro: #2ECC88;
+  --grafite:     #0D1B2A;
+  --cinza-bg:    #F8FAFC;
+  --cinza-borda: #E2EAF2;
+  --texto:       #1a2535;
+  --muted:       #6B7E92;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: var(--texto); background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+.ti { line-height: 1; }
+
+/* ── LOGO SVG (nav, animado) ── */
+.logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
+@keyframes navOrbit1 { 0%,100%{transform:rotate(0deg)   translateX(3px) rotate(0deg)}   50%{transform:rotate(180deg) translateX(3px) rotate(-180deg)} }
+@keyframes navOrbit2 { 0%,100%{transform:rotate(120deg) translateX(2.5px) rotate(-120deg)} 50%{transform:rotate(-60deg)  translateX(2.5px) rotate(60deg)} }
+@keyframes navOrbit3 { 0%,100%{transform:rotate(240deg) translateX(2px)  rotate(-240deg)} 50%{transform:rotate(60deg)   translateX(2px)  rotate(-60deg)} }
+.logo-svg .nc1 { transform-origin: 30px 27px; animation: navOrbit1 7s ease-in-out infinite; }
+.logo-svg .nc2 { transform-origin: 30px 27px; animation: navOrbit2 7s ease-in-out infinite; }
+.logo-svg .nc3 { transform-origin: 30px 27px; animation: navOrbit3 7s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .logo-svg .nc1,.logo-svg .nc2,.logo-svg .nc3 { animation: none; } }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 6%;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--cinza-borda);
+}
+.nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.nav-logo-text { display: flex; flex-direction: column; }
+.nav-logo-ms  { font-family: 'DM Serif Display', serif; font-size: 19px; color: var(--azul); line-height: 1.1; }
+.nav-logo-sub { font-family: 'Inter', sans-serif; font-size: 8.5px; letter-spacing: 2.6px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links a { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+.nav-links a:hover { color: var(--azul); }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+  background: var(--verde); color: #fff;
+  padding: 9px 18px; border-radius: 8px; text-decoration: none;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--verde-escuro); }
+.nav-cta .ti { font-size: 16px; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 6% 80px;
+  background: linear-gradient(150deg, var(--grafite) 0%, #112338 65%, #0e2c4a 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -140px; right: -100px;
+  width: 560px; height: 560px;
+  background: radial-gradient(circle, rgba(29,175,110,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { max-width: 640px; position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--verde-claro); margin-bottom: 26px;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--verde); }
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.13;
+  color: #fff;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+.hero h1 em { font-style: italic; color: var(--azul-claro); }
+.hero p {
+  font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.72);
+  margin-bottom: 38px; max-width: 510px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--verde); color: #fff;
+  font-size: 14px; font-weight: 600;
+  padding: 14px 26px; border-radius: 9px; text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--verde-escuro); transform: translateY(-1px); }
+.btn-primary .ti { font-size: 18px; }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: transparent; color: #fff;
+  font-size: 14px; font-weight: 500;
+  padding: 14px 24px; border-radius: 9px; text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  transition: border-color 0.15s, background 0.15s;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.06); }
+.btn-secondary .ti { font-size: 18px; }
+.hero-visual { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); pointer-events: none; }
+
+/* ── STATS BAND ── */
+.stats-band {
+  background: var(--azul);
+  padding: 36px 6%;
+  display: flex; justify-content: center; gap: 0;
+}
+.stat-item {
+  text-align: center; flex: 1; max-width: 230px;
+  padding: 0 28px;
+  border-right: 1px solid rgba(255,255,255,0.18);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num { font-family: 'DM Serif Display', serif; font-size: 34px; color: #fff; display: block; line-height: 1; }
+.stat-num span { font-size: 21px; color: var(--verde-claro); }
+.stat-label { font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 8px; display: block; letter-spacing: 0.3px; }
+
+/* ── SEÇÕES GENÉRICAS ── */
+section { padding: 96px 6%; }
+.section-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--verde); margin-bottom: 14px; display: block;
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3.5vw, 40px);
+  line-height: 1.22; color: var(--grafite);
+  margin-bottom: 18px; letter-spacing: -0.3px;
+}
+.section-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 540px; }
+
+/* ── SOBRE ── */
+.sobre { background: var(--cinza-bg); }
+.sobre-inner { display: grid; grid-template-columns: 0.85fr 1fr; gap: 72px; align-items: center; max-width: 1100px; margin: 0 auto; }
+.sobre-logo-grande { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.sobre-logo-grande svg { width: 150px; height: 150px; }
+.sobre-marca { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--azul); text-align: center; }
+.sobre-marca-sub { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; text-align: center; }
+.sobre-text p { font-size: 15.5px; line-height: 1.8; color: #3a4a5c; margin-bottom: 16px; }
+.socios { display: flex; gap: 18px; margin-top: 30px; }
+.socio-card { flex: 1; background: #fff; border-radius: 12px; padding: 20px; border: 1px solid var(--cinza-borda); }
+.socio-head { display: flex; align-items: center; gap: 12px; }
+.socio-avatar {
+  width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: #fff;
+}
+.socio-avatar.a { background: var(--azul); }
+.socio-avatar.b { background: var(--verde); }
+.socio-nome { font-weight: 600; font-size: 14px; color: var(--grafite); }
+.socio-cargo { font-size: 12px; color: var(--azul); margin-top: 2px; font-family: 'Inter', sans-serif; }
+.socio-cred { font-size: 11.5px; color: var(--muted); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--cinza-borda); }
+
+/* ── SERVIÇOS ── */
+.servicos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 52px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+.servico-card {
+  background: #fff; border: 1px solid var(--cinza-borda);
+  border-radius: 14px; padding: 30px 26px;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  position: relative; overflow: hidden;
+}
+.servico-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: linear-gradient(90deg, var(--azul), var(--azul-claro));
+  opacity: 0; transition: opacity 0.2s;
+}
+.servico-card:hover { box-shadow: 0 12px 36px rgba(13,27,42,0.08); transform: translateY(-4px); border-color: var(--azul-claro); }
+.servico-card:hover::before { opacity: 1; }
+.servico-icon {
+  width: 50px; height: 50px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.servico-icon .ti { font-size: 26px; }
+.servico-icon.blue { background: #EBF4FF; color: var(--azul); }
+.servico-icon.green { background: #E3F7EE; color: var(--verde-escuro); }
+.servico-icon.navy { background: #E7ECF2; color: var(--grafite); }
+.servico-card h3 { font-family: 'DM Serif Display', serif; font-size: 19px; color: var(--grafite); margin-bottom: 10px; }
+.servico-card p { font-size: 14px; line-height: 1.7; color: var(--muted); }
+.servico-tag {
+  display: inline-block; margin-top: 18px;
+  font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 5px;
+  background: var(--cinza-bg); color: var(--azul);
+}
+
+/* ── DIFERENCIAIS ── */
+.diferenciais { background: var(--grafite); }
+.diferenciais .section-title { color: #fff; }
+.diferenciais .section-eyebrow { color: var(--verde-claro); }
+.dif-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 52px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+.dif-item { padding: 28px 24px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; background: rgba(255,255,255,0.04); }
+.dif-num { font-family: 'DM Serif Display', serif; font-size: 38px; color: var(--azul-claro); opacity: 0.45; line-height: 1; }
+.dif-titulo { font-weight: 600; font-size: 15px; color: #fff; margin: 12px 0 8px; }
+.dif-texto { font-size: 13.5px; color: rgba(255,255,255,0.58); line-height: 1.65; }
+
+/* ── SEGMENTOS ── */
+.segmentos-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.segmento-bloco { background: var(--cinza-bg); border: 1px solid var(--cinza-borda); border-radius: 16px; padding: 38px; }
+.segmento-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+.segmento-chip {
+  width: 46px; height: 46px; border-radius: 11px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.segmento-chip .ti { font-size: 24px; }
+.segmento-chip.blue { background: #EBF4FF; color: var(--azul); }
+.segmento-chip.navy { background: #E7ECF2; color: var(--grafite); }
+.segmento-bloco h3 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--grafite); }
+.segmento-bloco .seg-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+.segmento-bloco ul { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+.segmento-bloco ul li { font-size: 14px; color: #3a4a5c; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+.segmento-bloco ul li .ti { color: var(--verde); font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── CONTATO ── */
+.contato { background: var(--cinza-bg); }
+.contato-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: stretch; }
+.contato-info { display: flex; flex-direction: column; gap: 18px; margin-top: 36px; }
+.contato-item { display: flex; gap: 16px; align-items: center; }
+.contato-icon {
+  width: 46px; height: 46px; border-radius: 11px;
+  background: #fff; border: 1px solid var(--cinza-borda);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--azul);
+}
+.contato-icon .ti { font-size: 20px; }
+.contato-label { font-family: 'Inter', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
+.contato-valor { font-size: 15px; font-weight: 500; color: var(--grafite); margin-top: 3px; }
+.contato-cta {
+  background: #fff; border-radius: 16px; padding: 38px;
+  border: 1px solid var(--cinza-borda); margin-top: 16px;
+  display: flex; flex-direction: column;
+}
+.contato-cta h3 { font-family: 'DM Serif Display', serif; font-size: 23px; color: var(--grafite); margin-bottom: 8px; }
+.contato-cta p { font-size: 14.5px; line-height: 1.65; color: var(--muted); margin-bottom: 26px; }
+.cta-btn {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 20px; border-radius: 11px; text-decoration: none;
+  margin-bottom: 12px; transition: transform 0.15s, box-shadow 0.2s;
+}
+.cta-btn:hover { transform: translateY(-2px); }
+.cta-btn .ti { font-size: 24px; flex-shrink: 0; }
+.cta-btn .cta-btn-label { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.5px; opacity: 0.85; }
+.cta-btn .cta-btn-valor { font-size: 15px; font-weight: 600; margin-top: 2px; }
+.cta-btn .cta-arrow { margin-left: auto; opacity: 0.6; }
+.cta-whats { background: var(--verde); color: #fff; }
+.cta-whats:hover { box-shadow: 0 10px 28px rgba(29,175,110,0.28); }
+.cta-mail { background: var(--cinza-bg); color: var(--grafite); border: 1px solid var(--cinza-borda); }
+.cta-mail:hover { box-shadow: 0 10px 28px rgba(13,27,42,0.08); }
+.cta-mail .ti:first-child { color: var(--azul); }
+.contato-nota {
+  margin-top: auto; padding-top: 22px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--muted); line-height: 1.5;
+}
+.contato-nota .ti { font-size: 18px; color: var(--verde); flex-shrink: 0; }
+
+/* ── FOOTER ── */
+footer { background: var(--grafite); padding: 48px 6% 32px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; gap: 32px; }
+.footer-brand { max-width: 280px; }
+.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.footer-logo-ms { font-family: 'DM Serif Display', serif; font-size: 18px; color: #fff; }
+.footer-logo-sub { font-family: 'Inter', sans-serif; font-size: 8px; letter-spacing: 2.5px; color: rgba(255,255,255,0.4); text-transform: uppercase; display: block; margin-top: 2px; }
+.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+.footer-links h4 { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links ul li a { font-size: 13.5px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; }
+.footer-links ul li a:hover { color: var(--verde-claro); }
+.footer-bottom { max-width: 1100px; margin: 24px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: 12.5px; color: rgba(255,255,255,0.32); }
+.footer-cnpj { font-family: 'Inter', sans-serif; font-size: 11.5px; color: rgba(255,255,255,0.28); }
+
+/* ── RESPONSIVO ── */
+@media (max-width: 980px) {
+  .nav-links { display: none; }
+  .sobre-inner, .contato-inner, .segmentos-inner { grid-template-columns: 1fr; gap: 40px; }
+  .servicos-grid { grid-template-columns: 1fr 1fr; }
+  .dif-grid { grid-template-columns: 1fr 1fr; }
+  .stats-band { flex-wrap: wrap; gap: 16px; }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 16px; min-width: 200px; }
+  .stat-item:last-child { border-bottom: none; }
+  .hero-visual { display: none; }
+}
+@media (max-width: 560px) {
+  .servicos-grid, .dif-grid { grid-template-columns: 1fr; }
+  section { padding: 64px 5%; }
+  .socios { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav data-screen-label="Navegação">
+  <a href="#inicio" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g class="nc1"><circle cx="22" cy="22" r="16" fill="none" stroke="#1B5E96" stroke-width="3" opacity="0.9"/></g>
+      <g class="nc2"><circle cx="38" cy="22" r="16" fill="none" stroke="#4AAEE8" stroke-width="3" opacity="0.9"/></g>
+      <g class="nc3"><circle cx="30" cy="36" r="16" fill="none" stroke="#1DAF6E" stroke-width="3" opacity="0.9"/></g>
+      <circle cx="30" cy="27" r="4" fill="#1DAF6E"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="nav-logo-ms">MS Gestão &amp; Tecnologia</span>
+      <span class="nav-logo-sub">Milaré &amp; Souza Consultoria</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#segmentos">Segmentos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://wa.me/5544999069725?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20MS%20Gest%C3%A3o%20%26%20Tecnologia." target="_blank" rel="noopener" class="nav-cta"><i class="ti ti-brand-whatsapp"></i> Fale conosco</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio" data-screen-label="Hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow">Consultoria · Gestão · Tecnologia</span>
+    <h1>Sua empresa com <em>mais eficiência</em> e menos complexidade</h1>
+    <p>Unimos expertise contábil, visão de negócios e tecnologia para transformar a forma como sua empresa opera — do planejamento à execução.</p>
+    <div class="hero-btns">
+      <a href="#servicos" class="btn-primary">Conheça nossos serviços <i class="ti ti-arrow-right"></i></a>
+      <a href="#contato" class="btn-secondary"><i class="ti ti-message-circle"></i> Solicitar diagnóstico</a>
+    </div>
+  </div>
+  <!-- Logo animado: círculos convergem para formar a marca -->
+  <div class="hero-visual">
+    <svg viewBox="0 0 400 400" width="440" height="440" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="glowCenter" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1DAF6E" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#1DAF6E" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <circle cx="200" cy="183" r="70" fill="url(#glowCenter)">
+        <animate attributeName="opacity" values="0;0;0.8;0.8;0.5;0.8" dur="7s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="90" fill="none" stroke="#1B5E96" stroke-width="2" opacity="0.75" filter="url(#glow)">
+        <animate attributeName="cx" values="80;80;170;170;170;80" keyTimes="0;0.05;0.45;0.55;0.75;1" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0 0 1 1; 0.4 0 0.2 1; 0.4 0 0.2 1" dur="7s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="80;80;163;163;163;80" keyTimes="0;0.05;0.45;0.55;0.75;1" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0 0 1 1; 0.4 0 0.2 1; 0.4 0 0.2 1" dur="7s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.7;0.75;0.75;0.6;0" keyTimes="0;0.05;0.45;0.55;0.75;1" dur="7s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="90" fill="none" stroke="#4AAEE8" stroke-width="2" opacity="0.65" filter="url(#glow)">
+        <animate attributeName="cx" values="320;320;230;230;230;320" keyTimes="0;0.05;0.45;0.55;0.75;1" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0 0 1 1; 0.4 0 0.2 1; 0.4 0 0.2 1" dur="7s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="80;80;163;163;163;80" keyTimes="0;0.05;0.45;0.55;0.75;1" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0 0 1 1; 0.4 0 0.2 1; 0.4 0 0.2 1" dur="7s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.6;0.65;0.65;0.5;0" keyTimes="0;0.05;0.45;0.55;0.75;1" dur="7s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="90" fill="none" stroke="#1DAF6E" stroke-width="2" opacity="0.65" filter="url(#glow)">
+        <animate attributeName="cx" values="200;200;200;200;200;200" dur="7s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="360;360;207;207;207;360" keyTimes="0;0.05;0.45;0.55;0.75;1" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0 0 1 1; 0.4 0 0.2 1; 0.4 0 0.2 1" dur="7s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.6;0.65;0.65;0.5;0" keyTimes="0;0.05;0.45;0.55;0.75;1" dur="7s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="200" cy="178" r="8" fill="#1DAF6E">
+        <animate attributeName="opacity" values="0;0;0;1;1;0" keyTimes="0;0.04;0.44;0.55;0.75;1" dur="7s" repeatCount="indefinite"/>
+        <animate attributeName="r" values="0;0;0;8;10;8;0" keyTimes="0;0.04;0.44;0.55;0.65;0.75;1" dur="7s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-item">
+    <span class="stat-num">+10<span> anos</span></span>
+    <span class="stat-label">de experiência em gestão</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">Gestão <span>+</span> TI</span>
+    <span class="stat-label">duas competências, um time</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">PR · MS · SP</span>
+    <span class="stat-label">atuação regional</span>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre" data-screen-label="Sobre">
+  <div class="sobre-inner">
+    <div class="sobre-logo-grande">
+      <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="52" cy="52" r="38" fill="none" stroke="#1B5E96" stroke-width="4" opacity="0.85"/>
+        <circle cx="88" cy="52" r="38" fill="none" stroke="#4AAEE8" stroke-width="4" opacity="0.85"/>
+        <circle cx="70" cy="84" r="38" fill="none" stroke="#1DAF6E" stroke-width="4" opacity="0.85"/>
+        <circle cx="70" cy="63" r="9" fill="#1DAF6E"/>
+      </svg>
+      <div class="sobre-marca">MS Gestão &amp; Tecnologia</div>
+      <div class="sobre-marca-sub">Milaré &amp; Souza Consultoria Ltda.</div>
+    </div>
+    <div class="sobre-text">
+      <span class="section-eyebrow">Quem somos</span>
+      <h2 class="section-title">Consultoria com raiz contábil e visão tecnológica</h2>
+      <p>A MS Gestão &amp; Tecnologia nasceu da união de duas competências complementares: a profundidade técnica da contabilidade e o olhar estratégico da tecnologia da informação.</p>
+      <p>Somos uma consultoria especializada em estruturar e otimizar negócios — desde o diagnóstico financeiro até a implantação de sistemas e processos que fazem a empresa funcionar melhor, todos os dias.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos" style="background:#fff;" data-screen-label="Serviços">
+  <div style="max-width:1100px; margin:0 auto;">
+    <span class="section-eyebrow">O que fazemos</span>
+    <h2 class="section-title">Serviços de consultoria</h2>
+    <p class="section-sub">Soluções integradas para empresas privadas e órgãos públicos que buscam mais eficiência, controle e crescimento sustentável.</p>
+  </div>
+  <div class="servicos-grid">
+    <div class="servico-card">
+      <div class="servico-icon green"><i class="ti ti-chart-bar"></i></div>
+      <h3>Gestão Financeira</h3>
+      <p>Estruturação do fluxo de caixa, controle de receitas e despesas, DRE gerencial e planejamento orçamentário para tomada de decisão segura.</p>
+      <span class="servico-tag">Empresas · Privado</span>
+    </div>
+    <div class="servico-card">
+      <div class="servico-icon blue"><i class="ti ti-settings"></i></div>
+      <h3>Consultoria em TI</h3>
+      <p>Implantação de sistemas de gestão, automação de processos, integração de ferramentas e desenvolvimento de soluções sob medida para o seu negócio.</p>
+      <span class="servico-tag">Empresas · Setor Público</span>
+    </div>
+    <div class="servico-card">
+      <div class="servico-icon blue"><i class="ti ti-route"></i></div>
+      <h3>Reestruturação de Processos</h3>
+      <p>Mapeamento e redesenho de processos internos para eliminar retrabalho, reduzir custos operacionais e aumentar a produtividade das equipes.</p>
+      <span class="servico-tag">Todos os segmentos</span>
+    </div>
+    <div class="servico-card">
+      <div class="servico-icon navy"><i class="ti ti-building-bank"></i></div>
+      <h3>Consultoria para Setor Público</h3>
+      <p>Apoio a prefeituras, autarquias e entidades públicas em gestão de contratos, compliance, transparência e eficiência administrativa.</p>
+      <span class="servico-tag">Setor Público</span>
+    </div>
+    <div class="servico-card">
+      <div class="servico-icon green"><i class="ti ti-target-arrow"></i></div>
+      <h3>Planejamento Estratégico</h3>
+      <p>Diagnóstico organizacional, definição de metas e OKRs, análise de mercado e construção de planos de ação com acompanhamento de resultados.</p>
+      <span class="servico-tag">Empresas · Startups</span>
+    </div>
+    <div class="servico-card">
+      <div class="servico-icon blue"><i class="ti ti-shield-check"></i></div>
+      <h3>Conformidade &amp; Compliance</h3>
+      <p>Adequação à LGPD, gestão fiscal sob o Simples Nacional, controle de obrigações acessórias e suporte a auditorias e prestações de contas.</p>
+      <span class="servico-tag">Empresas · Privado</span>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="diferenciais" data-screen-label="Diferenciais">
+  <div style="max-width:1100px; margin:0 auto;">
+    <span class="section-eyebrow">Por que a MS</span>
+    <h2 class="section-title">Consultoria que entrega resultado,<br>não só relatório</h2>
+  </div>
+  <div class="dif-grid">
+    <div class="dif-item">
+      <div class="dif-num">01</div>
+      <div class="dif-titulo">Visão integrada</div>
+      <div class="dif-texto">Contabilidade e TI no mesmo time — a solução financeira e tecnológica saem do mesmo diagnóstico.</div>
+    </div>
+    <div class="dif-item">
+      <div class="dif-num">02</div>
+      <div class="dif-titulo">Sob medida</div>
+      <div class="dif-texto">Nenhum processo é genérico. Cada entrega é construída a partir da realidade e do porte do cliente.</div>
+    </div>
+    <div class="dif-item">
+      <div class="dif-num">03</div>
+      <div class="dif-titulo">Implantação real</div>
+      <div class="dif-texto">Não ficamos no papel. Acompanhamos a implantação até o time do cliente operar com autonomia.</div>
+    </div>
+    <div class="dif-item">
+      <div class="dif-num">04</div>
+      <div class="dif-titulo">Paraná, MS e SP</div>
+      <div class="dif-texto">Atendimento presencial e remoto nos estados do Paraná, Mato Grosso do Sul e São Paulo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTOS -->
+<section id="segmentos" style="background:#fff;" data-screen-label="Segmentos">
+  <div style="max-width:1100px; margin:0 auto; margin-bottom:48px;">
+    <span class="section-eyebrow">Quem atendemos</span>
+    <h2 class="section-title">Dois universos, uma consultoria</h2>
+    <p class="section-sub">Nossa experiência abrange tanto o setor privado quanto o público, com metodologias adaptadas a cada realidade.</p>
+  </div>
+  <div class="segmentos-inner">
+    <div class="segmento-bloco">
+      <div class="segmento-head">
+        <div class="segmento-chip blue"><i class="ti ti-building-skyscraper"></i></div>
+        <h3>Setor Privado</h3>
+      </div>
+      <p class="seg-sub">MEI, ME, EPP e empresas de médio porte</p>
+      <ul>
+        <li><i class="ti ti-arrow-right"></i> Estruturação financeira e fluxo de caixa</li>
+        <li><i class="ti ti-arrow-right"></i> Implantação de ERP e sistemas de gestão</li>
+        <li><i class="ti ti-arrow-right"></i> Controle de contratos e faturamento</li>
+        <li><i class="ti ti-arrow-right"></i> Planejamento tributário Simples Nacional</li>
+        <li><i class="ti ti-arrow-right"></i> Processos internos e gestão de equipes</li>
+        <li><i class="ti ti-arrow-right"></i> Adequação LGPD e segurança da informação</li>
+      </ul>
+    </div>
+    <div class="segmento-bloco">
+      <div class="segmento-head">
+        <div class="segmento-chip navy"><i class="ti ti-building-bank"></i></div>
+        <h3>Setor Público</h3>
+      </div>
+      <p class="seg-sub">Prefeituras, autarquias e entidades</p>
+      <ul>
+        <li><i class="ti ti-arrow-right"></i> Gestão e controle de contratos administrativos</li>
+        <li><i class="ti ti-arrow-right"></i> Consultoria em licitações e Lei 14.133/21</li>
+        <li><i class="ti ti-arrow-right"></i> Sistemas de transparência e prestação de contas</li>
+        <li><i class="ti ti-arrow-right"></i> Automação de processos administrativos</li>
+        <li><i class="ti ti-arrow-right"></i> Capacitação de servidores em gestão e TI</li>
+        <li><i class="ti ti-arrow-right"></i> Compliance e controle interno</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato" data-screen-label="Contato">
+  <div class="contato-inner">
+    <div>
+      <span class="section-eyebrow">Fale conosco</span>
+      <h2 class="section-title">Vamos conversar sobre seu negócio</h2>
+      <p class="section-sub">Solicite um diagnóstico sem compromisso. Respondemos pelo WhatsApp ou e-mail em até 24 horas úteis.</p>
+      <div class="contato-info">
+        <div class="contato-item">
+          <div class="contato-icon"><i class="ti ti-world"></i></div>
+          <div>
+            <div class="contato-label">Site</div>
+            <div class="contato-valor">msgestaotecnologia.com.br</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contato-cta">
+      <h3>Solicite um diagnóstico</h3>
+      <p>Escolha o canal mais cômodo para você. É rápido e sem compromisso.</p>
+      <a href="https://wa.me/5544999069725?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20diagn%C3%B3stico%20com%20a%20MS%20Gest%C3%A3o%20%26%20Tecnologia." target="_blank" rel="noopener" class="cta-btn cta-whats">
+        <i class="ti ti-brand-whatsapp"></i>
+        <div>
+          <div class="cta-btn-label">Conversar agora pelo</div>
+          <div class="cta-btn-valor">WhatsApp</div>
+        </div>
+        <i class="ti ti-arrow-right cta-arrow"></i>
+      </a>
+      <a href="mailto:contato@msgestaotecnologia.com.br" class="cta-btn cta-mail">
+        <i class="ti ti-mail"></i>
+        <div>
+          <div class="cta-btn-label">Escrever um</div>
+          <div class="cta-btn-valor">contato@msgestaotecnologia.com.br</div>
+        </div>
+        <i class="ti ti-arrow-right cta-arrow"></i>
+      </a>
+      <div class="contato-nota">
+        <i class="ti ti-clock-hour-4"></i>
+        <span>Atendimento de segunda a sexta, das 8h às 18h. Retorno em até 24 horas úteis.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+          <circle cx="22" cy="22" r="16" fill="none" stroke="#1B5E96" stroke-width="2.5"/>
+          <circle cx="38" cy="22" r="16" fill="none" stroke="#4AAEE8" stroke-width="2.5"/>
+          <circle cx="30" cy="36" r="16" fill="none" stroke="#1DAF6E" stroke-width="2.5"/>
+          <circle cx="30" cy="27" r="3.5" fill="#1DAF6E"/>
+        </svg>
+        <div>
+          <div class="footer-logo-ms">MS Gestão &amp; Tecnologia</div>
+          <span class="footer-logo-sub">Milaré &amp; Souza Consultoria Ltda.</span>
+        </div>
+      </div>
+      <p>Consultoria integrada em gestão empresarial e tecnologia da informação.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#sobre">Sobre nós</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#segmentos">Segmentos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Serviços</h4>
+      <ul>
+        <li><a href="#servicos">Gestão Financeira</a></li>
+        <li><a href="#servicos">Consultoria em TI</a></li>
+        <li><a href="#servicos">Setor Público</a></li>
+        <li><a href="#servicos">Compliance &amp; LGPD</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="https://wa.me/5544999069725" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="mailto:contato@msgestaotecnologia.com.br">contato@msgestaotecnologia.com.br</a></li>
+        <li><a href="#contato">Solicitar diagnóstico</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Milaré &amp; Souza Consultoria Ltda. Todos os direitos reservados.</p>
+    <span style="font-family:'Inter',sans-serif;font-size:11.5px;color:rgba(255,255,255,0.28);">CNAE 70.20-4/00 · 62.04-0/00 · Simples Nacional · Loanda, PR &nbsp;·&nbsp; <a href="https://sistema.msgestaotecnologia.com.br" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.18);text-decoration:none;" title="Acesso restrito">⚙</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
