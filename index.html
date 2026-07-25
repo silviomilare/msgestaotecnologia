@@ -337,7 +337,7 @@ footer { background: var(--grafite); padding: 48px 6% 32px; }
     <li><a href="#contato">Contato</a></li>
   </ul>
   <div class="nav-actions">
-    <a href="https://wa.me/5544999069725?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20MS%20Gest%C3%A3o%20%26%20Tecnologia." target="_blank" rel="noopener" class="nav-cta"><i class="ti ti-brand-whatsapp"></i> Fale conosco</a>
+    <a href="https://wa.me/5544999069725?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20MS%20Gest%C3%A3o%20%26%20Tecnologia." target="_blank" rel="noopener" class="nav-cta" data-track="clique_whatsapp"><i class="ti ti-brand-whatsapp"></i> Fale conosco</a>
   </div>
 </nav>
 
@@ -567,7 +567,7 @@ footer { background: var(--grafite); padding: 48px 6% 32px; }
     <div class="contato-cta">
       <h3>Solicite um diagnóstico</h3>
       <p>Escolha o canal mais cômodo para você. É rápido e sem compromisso.</p>
-      <a href="https://wa.me/5544999069725?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20diagn%C3%B3stico%20com%20a%20MS%20Gest%C3%A3o%20%26%20Tecnologia." target="_blank" rel="noopener" class="cta-btn cta-whats">
+      <a href="https://wa.me/5544999069725?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20diagn%C3%B3stico%20com%20a%20MS%20Gest%C3%A3o%20%26%20Tecnologia." target="_blank" rel="noopener" class="cta-btn cta-whats" data-track="clique_whatsapp">
         <i class="ti ti-brand-whatsapp"></i>
         <div>
           <div class="cta-btn-label">Conversar agora pelo</div>
@@ -575,7 +575,7 @@ footer { background: var(--grafite); padding: 48px 6% 32px; }
         </div>
         <i class="ti ti-arrow-right cta-arrow"></i>
       </a>
-      <a href="mailto:contato@msgestaotecnologia.com.br" class="cta-btn cta-mail">
+      <a href="mailto:contato@msgestaotecnologia.com.br" class="cta-btn cta-mail" data-track="clique_email">
         <i class="ti ti-mail"></i>
         <div>
           <div class="cta-btn-label">Escrever um</div>
@@ -641,6 +641,71 @@ footer { background: var(--grafite); padding: 48px 6% 32px; }
     <span style="font-family:'Inter',sans-serif;font-size:11.5px;color:rgba(255,255,255,0.28);">CNAE 70.20-4/00 · 62.04-0/00 · Simples Nacional · Loanda, PR &nbsp;·&nbsp; <a href="https://sistema.msgestaotecnologia.com.br" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.18);text-decoration:none;" title="Acesso restrito">⚙</a></span>
   </div>
 </footer>
+
+<!-- ── Rastreamento (Sistema MS Gestao, funil de vendas) ──────────────────
+     Manda visita de pagina + clique nos CTAs de WhatsApp/e-mail pro
+     sistema, pra saber origem/volume de trafego (site, Instagram via UTM
+     na URL, etc.). Nao coleta dado de contato (o site nao tem
+     formulario) -- so contagem/origem. Ver modules/tracking/routes.py no
+     repo do sistema (sistema-ms-gestao). Falha silenciosa se o endpoint
+     estiver fora do ar -- nunca deve afetar a navegacao do visitante. -->
+<script>
+(function () {
+  var ENDPOINT = 'https://sistema.msgestaotecnologia.com.br/track/evento';
+  var SITE_TOKEN = '358ccea5-007f-4b14-bb31-1a183e329702'; // Milare & Souza -- gerado em 25/Jul/2026 pela migration empresa_site_token
+
+  function sessaoId() {
+    try {
+      var id = localStorage.getItem('ms_sessao_id');
+      if (!id) {
+        id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+          var r = Math.random() * 16 | 0;
+          var v = c === 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+        localStorage.setItem('ms_sessao_id', id);
+      }
+      return id;
+    } catch (e) {
+      return null; // localStorage bloqueado (modo privado etc.) -- segue sem sessao_id
+    }
+  }
+
+  function utm(param) {
+    return new URLSearchParams(location.search).get(param) || null;
+  }
+
+  function enviar(tipoEvento) {
+    var payload = JSON.stringify({
+      site_token: SITE_TOKEN,
+      tipo_evento: tipoEvento,
+      pagina: location.pathname,
+      referrer: document.referrer || null,
+      utm_source: utm('utm_source'),
+      utm_medium: utm('utm_medium'),
+      utm_campaign: utm('utm_campaign'),
+      sessao_id: sessaoId(),
+    });
+    try {
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(ENDPOINT, new Blob([payload], { type: 'application/json' }));
+      } else {
+        fetch(ENDPOINT, { method: 'POST', body: payload, headers: { 'Content-Type': 'application/json' }, keepalive: true });
+      }
+    } catch (e) {
+      // nunca deixar rastreamento quebrar a navegacao do visitante
+    }
+  }
+
+  enviar('visita');
+
+  document.querySelectorAll('[data-track]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      enviar(el.getAttribute('data-track'));
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
