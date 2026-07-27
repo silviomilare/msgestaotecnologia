@@ -280,6 +280,34 @@ section { padding: 96px 6%; }
 }
 .contato-nota .ti { font-size: 18px; color: var(--verde); flex-shrink: 0; }
 
+/* ── FORMULARIO (opcional, adicional ao WhatsApp/e-mail) ── */
+.contato-divisor {
+  display: flex; align-items: center; gap: 12px;
+  margin: 22px 0; font-family: 'Inter', sans-serif; font-size: 11px;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 1px;
+}
+.contato-divisor::before, .contato-divisor::after {
+  content: ''; flex: 1; height: 1px; background: var(--cinza-borda);
+}
+.contato-form { display: flex; flex-direction: column; gap: 10px; }
+.contato-form input, .contato-form textarea {
+  width: 100%; font-family: 'Inter', sans-serif; font-size: 13.5px;
+  padding: 11px 13px; border: 1px solid var(--cinza-borda); border-radius: 8px;
+  outline: none; color: var(--texto); background: #fff;
+}
+.contato-form input:focus, .contato-form textarea:focus { border-color: var(--azul-claro); }
+.contato-form textarea { resize: vertical; min-height: 60px; font-family: 'DM Sans', sans-serif; }
+.contato-form button {
+  font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600;
+  background: var(--azul); color: #fff; border: none; border-radius: 8px;
+  padding: 12px; cursor: pointer; transition: background 0.15s;
+}
+.contato-form button:hover { background: var(--azul-escuro); }
+.contato-form button:disabled { opacity: 0.6; cursor: not-allowed; }
+.contato-form-msg { font-size: 12.5px; font-family: 'Inter', sans-serif; display: none; }
+.contato-form-msg.ok { color: var(--verde-escuro); }
+.contato-form-msg.erro { color: #c0392b; }
+
 /* ── FOOTER ── */
 footer { background: var(--grafite); padding: 48px 6% 32px; }
 .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; gap: 32px; }
@@ -583,6 +611,14 @@ footer { background: var(--grafite); padding: 48px 6% 32px; }
         </div>
         <i class="ti ti-arrow-right cta-arrow"></i>
       </a>
+      <div class="contato-divisor">ou deixe seu contato</div>
+      <form class="contato-form" id="form-contato">
+        <input type="text" name="nome" placeholder="Seu nome" required maxlength="150">
+        <input type="text" name="contato" placeholder="E-mail ou telefone" required maxlength="120">
+        <textarea name="mensagem" placeholder="Como podemos ajudar? (opcional)" maxlength="2000"></textarea>
+        <button type="submit">Enviar</button>
+        <div class="contato-form-msg" id="form-contato-msg"></div>
+      </form>
       <div class="contato-nota">
         <i class="ti ti-clock-hour-4"></i>
         <span>Atendimento de segunda a sexta, das 8h às 18h. Retorno em até 24 horas úteis.</span>
@@ -644,11 +680,13 @@ footer { background: var(--grafite); padding: 48px 6% 32px; }
 
 <!-- ── Rastreamento (Sistema MS Gestao, funil de vendas) ──────────────────
      Manda visita de pagina + clique nos CTAs de WhatsApp/e-mail pro
-     sistema, pra saber origem/volume de trafego (site, Instagram via UTM
-     na URL, etc.). Nao coleta dado de contato (o site nao tem
-     formulario) -- so contagem/origem. Ver modules/tracking/routes.py no
-     repo do sistema (sistema-ms-gestao). Falha silenciosa se o endpoint
-     estiver fora do ar -- nunca deve afetar a navegacao do visitante. -->
+     sistema (POST /track/evento, fire-and-forget via sendBeacon), pra
+     saber origem/volume de trafego (site, Instagram via UTM na URL,
+     etc.). O formulario de contato (adicional ao WhatsApp/e-mail, nao
+     substitui) manda pra POST /track/lead, que cria um Lead direto no
+     Funil e devolve sucesso/erro pro visitante. Ver modules/tracking/
+     routes.py no repo do sistema (sistema-ms-gestao). Falha silenciosa
+     no /evento -- nunca deve afetar a navegacao do visitante. -->
 <script>
 (function () {
   var ENDPOINT = 'https://sistema.msgestaotecnologia.com.br/track/evento';
@@ -704,6 +742,59 @@ footer { background: var(--grafite); padding: 48px 6% 32px; }
       enviar(el.getAttribute('data-track'));
     });
   });
+
+  // ── Formulario de contato ── envia pra /track/lead (endpoint
+  // diferente do /track/evento -- este da retorno de sucesso/erro pro
+  // visitante, porque ele preencheu um formulario esperando resposta).
+  var form = document.getElementById('form-contato');
+  if (form) {
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var msgEl = document.getElementById('form-contato-msg');
+      var botao = form.querySelector('button');
+      var contato = form.contato.value.trim();
+      var payload = {
+        site_token: SITE_TOKEN,
+        nome: form.nome.value.trim(),
+        email: contato.indexOf('@') !== -1 ? contato : '',
+        telefone: contato.indexOf('@') === -1 ? contato : '',
+        mensagem: form.mensagem.value.trim(),
+        utm_source: utm('utm_source'),
+        sessao_id: sessaoId(),
+      };
+
+      botao.disabled = true;
+      botao.textContent = 'Enviando...';
+      msgEl.style.display = 'none';
+
+      fetch('https://sistema.msgestaotecnologia.com.br/track/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          msgEl.style.display = 'block';
+          if (d.ok) {
+            msgEl.className = 'contato-form-msg ok';
+            msgEl.textContent = 'Recebemos seu contato! Retornaremos em breve.';
+            form.reset();
+          } else {
+            msgEl.className = 'contato-form-msg erro';
+            msgEl.textContent = d.erro || 'Nao foi possivel enviar. Tente pelo WhatsApp.';
+          }
+        })
+        .catch(function () {
+          msgEl.style.display = 'block';
+          msgEl.className = 'contato-form-msg erro';
+          msgEl.textContent = 'Nao foi possivel enviar agora. Tente pelo WhatsApp.';
+        })
+        .finally(function () {
+          botao.disabled = false;
+          botao.textContent = 'Enviar';
+        });
+    });
+  }
 })();
 </script>
 
