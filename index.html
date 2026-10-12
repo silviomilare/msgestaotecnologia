@@ -1,683 +1,832 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MS Gestão & Tecnologia — Consultoria Empresarial e de TI</title>
-<meta name="description" content="Consultoria em gestão empresarial e tecnologia da informação para empresas e órgãos públicos. Atuação em PR, MS e SP.">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MS Gestão &amp; Tecnologia | Consultoria Empresarial e de TI em Loanda/PR</title>
+<meta name="description" content="Consultoria que une contabilidade, gestão e tecnologia. Gestão financeira, TI, processos, compliance/LGPD e apoio ao setor público (Lei 14.133/21). Atendimento no PR, MS e SP.">
+<link rel="canonical" href="https://msgestaotecnologia.com.br/">
+<meta name="theme-color" content="#0D1B2A">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="MS Gestão & Tecnologia">
+<meta property="og:description" content="Contabilidade, visão de negócio e tecnologia para tornar sua operação mais eficiente.">
+<meta property="og:url" content="https://msgestaotecnologia.com.br/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke-width='4'%3E%3Ccircle cx='22' cy='22' r='15' stroke='%231B5E96'/%3E%3Ccircle cx='38' cy='22' r='15' stroke='%234AAEE8'/%3E%3Ccircle cx='30' cy='36' r='15' stroke='%231DAF6E'/%3E%3C/g%3E%3Ccircle cx='30' cy='27' r='4' fill='%231DAF6E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "MS Gestão & Tecnologia",
+  "legalName": "Milaré & Souza Consultoria Ltda.",
+  "url": "https://msgestaotecnologia.com.br/",
+  "telephone": "+55-44-99906-9725",
+  "address": {"@type": "PostalAddress", "addressLocality": "Loanda", "addressRegion": "PR", "addressCountry": "BR"},
+  "areaServed": ["Paraná", "Mato Grosso do Sul", "São Paulo"],
+  "openingHours": "Mo-Fr 08:00-18:00",
+  "description": "Consultoria empresarial e de TI: gestão financeira, tecnologia, processos, compliance e setor público."
+}
+</script>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root{
+  --navy-900:#0D1B2A; --navy-800:#11253b; --navy-700:#144878; --navy-600:#1B5E96;
+  --teal:#2ECC88; --teal-600:#17935c; --cyan:#4AAEE8; --amber:#1DAF6E; --verde:#1DAF6E;
+  --ink:#0f172a; --muted:#5b6b82; --line:#e3e9f2; --bg:#f6f8fc; --card:#ffffff;
+  --radius:18px; --shadow:0 10px 30px -12px rgba(11,27,51,.18);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip}
+html{overflow-x:clip}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--teal);color:var(--navy-900);padding:10px 16px;border-radius:10px;z-index:200;font-weight:700}
+.skip:focus{left:12px}
 
-:root {
-  --azul:        #1B5E96;
-  --azul-escuro: #144878;
-  --azul-claro:  #4AAEE8;
-  --verde:       #1DAF6E;
-  --verde-escuro:#17935c;
-  --verde-claro: #2ECC88;
-  --grafite:     #0D1B2A;
-  --cinza-bg:    #F8FAFC;
-  --cinza-borda: #E2EAF2;
-  --texto:       #1a2535;
-  --muted:       #6B7E92;
-}
+/* ---------- progress + header ---------- */
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--teal),var(--cyan));z-index:120}
+header.site{position:fixed;inset:0 0 auto 0;z-index:100;transition:background .35s var(--ease),box-shadow .35s var(--ease),padding .35s var(--ease);padding:18px 0}
+header.site.scrolled{background:rgba(13,27,42,.86);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);box-shadow:0 8px 24px -16px rgba(0,0,0,.6);padding:10px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff;font-weight:800;letter-spacing:-.02em}
+.logo{width:40px;height:40px;flex:none;overflow:visible}
+.logo .nc1{transform-origin:30px 27px;animation:o1 7s ease-in-out infinite}
+.logo .nc2{transform-origin:30px 27px;animation:o2 7s ease-in-out infinite}
+.logo .nc3{transform-origin:30px 27px;animation:o3 7s ease-in-out infinite}
+.logo .core{transform-origin:30px 27px;animation:core 3.5s ease-in-out infinite}
+@keyframes o1{0%,100%{transform:rotate(0) translateX(3px) rotate(0)}50%{transform:rotate(180deg) translateX(3px) rotate(-180deg)}}
+@keyframes o2{0%,100%{transform:rotate(120deg) translateX(2.5px) rotate(-120deg)}50%{transform:rotate(-60deg) translateX(2.5px) rotate(60deg)}}
+@keyframes o3{0%,100%{transform:rotate(240deg) translateX(2px) rotate(-240deg)}50%{transform:rotate(60deg) translateX(2px) rotate(-60deg)}}
+@keyframes core{50%{transform:scale(1.25)}}
+.brand small{display:block;font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9fb3cf}
+.menu{display:flex;align-items:center;gap:6px}
+.menu a{color:#cfdaea;font-weight:600;font-size:15px;padding:8px 14px;border-radius:999px;position:relative;transition:color .2s}
+.menu a::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:2px;border-radius:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.menu a:hover,.menu a.active{color:#fff}
+.menu a:hover::after,.menu a.active::after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;border-radius:999px;padding:14px 24px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s;will-change:transform;white-space:nowrap}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:var(--teal);color:var(--navy-900);box-shadow:0 10px 24px -10px rgba(29,175,110,.75)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(29,175,110,.9)}
+.btn-ghost{color:#fff;border:1.5px solid rgba(255,255,255,.28)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.btn-sm{padding:10px 18px;font-size:14px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;color:#fff;align-items:center;justify-content:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:22px;height:2px;background:currentColor;border-radius:2px;position:relative;transition:transform .3s var(--ease),background .3s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-7px}.burger span::after{top:7px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
 
-html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; color: var(--texto); background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-.ti { line-height: 1; }
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;color:#fff;background:radial-gradient(1200px 600px at 80% -10%,#1B5E96 0%,transparent 60%),radial-gradient(900px 500px at -10% 110%,#145c45 0%,transparent 55%),var(--navy-900);overflow:hidden;padding:120px 0 80px}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:160px;background:linear-gradient(to bottom,transparent,rgba(13,27,42,.9))}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:rgba(29,175,110,.1);border:1px solid rgba(29,175,110,.25);padding:7px 14px;border-radius:999px}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(29,175,110,.7);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(29,175,110,0)}100%{box-shadow:0 0 0 0 rgba(29,175,110,0)}}
+.hero h1{font-size:clamp(2.3rem,4.8vw,3.7rem);line-height:1.06;letter-spacing:-.035em;font-weight:800;margin:22px 0 20px}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .line>span{display:inline-block;transform:translateY(105%);animation:rise .9s var(--ease) forwards}
+.hero h1 .line:nth-child(2)>span{animation-delay:.12s}
+.hero h1 .line:nth-child(3)>span{animation-delay:.24s}
+@keyframes rise{to{transform:none}}
+.grad{font-family:"DM Serif Display",Georgia,serif;font-style:italic;font-weight:400;padding-right:.08em;background:linear-gradient(90deg,var(--teal),var(--cyan),var(--teal));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+.hero p.lead{font-size:clamp(1.05rem,1.6vw,1.22rem);color:#c3d1e6;max-width:560px;opacity:0;animation:fade .9s .45s var(--ease) forwards}
+.rot-line{margin-top:14px;font-size:1rem!important;color:#9fb3cf!important;animation-delay:.55s!important}
+.rot-line .rotator{color:var(--teal)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;opacity:0;animation:fade .9s .6s var(--ease) forwards}
+@keyframes fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.rotator{display:inline-grid;vertical-align:bottom;color:#fff;font-weight:700}
+.rotator span{grid-area:1/1;opacity:0;transform:translateY(60%);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.rotator span.on{opacity:1;transform:none}
+.rotator span.out{opacity:0;transform:translateY(-60%)}
 
-/* ── LOGO SVG (nav, animado) ── */
-.logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
-@keyframes navOrbit1 { 0%,100%{transform:rotate(0deg)   translateX(3px) rotate(0deg)}   50%{transform:rotate(180deg) translateX(3px) rotate(-180deg)} }
-@keyframes navOrbit2 { 0%,100%{transform:rotate(120deg) translateX(2.5px) rotate(-120deg)} 50%{transform:rotate(-60deg)  translateX(2.5px) rotate(60deg)} }
-@keyframes navOrbit3 { 0%,100%{transform:rotate(240deg) translateX(2px)  rotate(-240deg)} 50%{transform:rotate(60deg)   translateX(2px)  rotate(-60deg)} }
-.logo-svg .nc1 { transform-origin: 30px 27px; animation: navOrbit1 7s ease-in-out infinite; }
-.logo-svg .nc2 { transform-origin: 30px 27px; animation: navOrbit2 7s ease-in-out infinite; }
-.logo-svg .nc3 { transform-origin: 30px 27px; animation: navOrbit3 7s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) { .logo-svg .nc1,.logo-svg .nc2,.logo-svg .nc3 { animation: none; } }
+.hero-card{position:relative;opacity:0;animation:fade 1s .7s var(--ease) forwards}
+.panel{background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:26px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 30px 60px -30px rgba(0,0,0,.6);transform:perspective(1000px) rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transition:transform .3s var(--ease)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#9fb3cf;margin-bottom:18px}
+.panel-head b{color:#fff;font-size:15px}
+.chip{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(29,175,110,.15);color:var(--teal)}
+.bars{display:flex;align-items:flex-end;gap:10px;height:130px;padding:6px 0 12px;border-bottom:1px dashed rgba(255,255,255,.15)}
+.bars i{flex:1;border-radius:8px 8px 3px 3px;background:linear-gradient(to top,rgba(74,174,232,.35),var(--teal));transform-origin:bottom;transform:scaleY(0);animation:grow 1.1s var(--ease) forwards}
+@keyframes grow{to{transform:scaleY(1)}}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.kpi{background:rgba(255,255,255,.05);border-radius:14px;padding:12px}
+.kpi small{display:block;font-size:11px;color:#9fb3cf}
+.kpi strong{font-size:20px;letter-spacing:-.02em}
+.kpi .up{color:var(--teal);font-size:12px;font-weight:700}
+.float-tag{position:absolute;display:flex;align-items:center;gap:10px;background:#fff;color:var(--ink);border-radius:14px;padding:10px 14px;font-size:13px;font-weight:700;box-shadow:0 18px 40px -18px rgba(0,0,0,.55);animation:bob 5s ease-in-out infinite}
+.float-tag .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#e7fbf5;color:var(--teal-600)}
+.float-tag .ic svg{width:16px;height:16px}
+.float-tag.t1{left:-34px;bottom:-22px}
+.float-tag.t2{right:-18px;top:-22px;animation-delay:-2.5s}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.scroll-cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;width:26px;height:42px;border:2px solid rgba(255,255,255,.35);border-radius:14px}
+.scroll-cue::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
 
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 6%;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--cinza-borda);
-}
-.nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
-.nav-logo-text { display: flex; flex-direction: column; }
-.nav-logo-ms  { font-family: 'DM Serif Display', serif; font-size: 19px; color: var(--azul); line-height: 1.1; }
-.nav-logo-sub { font-family: 'Inter', sans-serif; font-size: 8.5px; letter-spacing: 2.6px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
-.nav-links { display: flex; gap: 30px; list-style: none; }
-.nav-links a { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.15s; }
-.nav-links a:hover { color: var(--azul); }
-.nav-actions { display: flex; align-items: center; gap: 12px; }
-.nav-cta {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
-  background: var(--verde); color: #fff;
-  padding: 9px 18px; border-radius: 8px; text-decoration: none;
-  transition: background 0.15s;
-}
-.nav-cta:hover { background: var(--verde-escuro); }
-.nav-cta .ti { font-size: 16px; }
+/* ---------- stats strip ---------- */
+.stats{position:relative;z-index:5;margin-top:-56px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border-radius:22px;box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden}
+.stat{padding:26px 24px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat strong{display:block;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;letter-spacing:-.03em;color:var(--navy-800)}
+.stat strong em{font-style:normal;color:var(--teal-600)}
+.stat>span{color:var(--muted);font-size:14px;font-weight:500}
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  padding: 120px 6% 80px;
-  background: linear-gradient(150deg, var(--grafite) 0%, #112338 65%, #0e2c4a 100%);
-  position: relative; overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute; top: -140px; right: -100px;
-  width: 560px; height: 560px;
-  background: radial-gradient(circle, rgba(29,175,110,0.10) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-content { max-width: 640px; position: relative; z-index: 1; }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
-  letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--verde-claro); margin-bottom: 26px;
-}
-.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--verde); }
-.hero h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(38px, 5vw, 58px);
-  line-height: 1.13;
-  color: #fff;
-  margin-bottom: 24px;
-  letter-spacing: -0.5px;
-}
-.hero h1 em { font-style: italic; color: var(--azul-claro); }
-.hero p {
-  font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.72);
-  margin-bottom: 38px; max-width: 510px;
-}
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 9px;
-  background: var(--verde); color: #fff;
-  font-size: 14px; font-weight: 600;
-  padding: 14px 26px; border-radius: 9px; text-decoration: none;
-  transition: background 0.15s, transform 0.15s;
-}
-.btn-primary:hover { background: var(--verde-escuro); transform: translateY(-1px); }
-.btn-primary .ti { font-size: 18px; }
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: 9px;
-  background: transparent; color: #fff;
-  font-size: 14px; font-weight: 500;
-  padding: 14px 24px; border-radius: 9px; text-decoration: none;
-  border: 1.5px solid rgba(255,255,255,0.25);
-  transition: border-color 0.15s, background 0.15s;
-}
-.btn-secondary:hover { border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.06); }
-.btn-secondary .ti { font-size: 18px; }
-.hero-visual { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); pointer-events: none; }
+/* ---------- sections ---------- */
+section{padding:110px 0}
+.sec-head{max-width:720px;margin-bottom:56px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.kicker{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-600)}
+.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.12;letter-spacing:-.03em;margin:12px 0 16px;color:var(--navy-800)}
+.sec-head p{color:var(--muted);font-size:1.08rem}
 
-/* ── STATS BAND ── */
-.stats-band {
-  background: var(--azul);
-  padding: 36px 6%;
-  display: flex; justify-content: center; gap: 0;
-}
-.stat-item {
-  text-align: center; flex: 1; max-width: 230px;
-  padding: 0 28px;
-  border-right: 1px solid rgba(255,255,255,0.18);
-}
-.stat-item:last-child { border-right: none; }
-.stat-num { font-family: 'DM Serif Display', serif; font-size: 34px; color: #fff; display: block; line-height: 1; }
-.stat-num span { font-size: 21px; color: var(--verde-claro); }
-.stat-label { font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 8px; display: block; letter-spacing: 0.3px; }
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--i,0) * 90ms)}
+.reveal.in{opacity:1;transform:none}
+.reveal.left{transform:translateX(-36px)}
+.reveal.right{transform:translateX(36px)}
+.reveal.left.in,.reveal.right.in{transform:none}
 
-/* ── SEÇÕES GENÉRICAS ── */
-section { padding: 96px 6%; }
-.section-eyebrow {
-  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
-  letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--verde); margin-bottom: 14px; display: block;
-}
-.section-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(28px, 3.5vw, 40px);
-  line-height: 1.22; color: var(--grafite);
-  margin-bottom: 18px; letter-spacing: -0.3px;
-}
-.section-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 540px; }
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-visual{--rad:min(240px,44vw);position:relative;aspect-ratio:1/1;max-width:500px}
+.orbit{position:absolute;inset:0;border-radius:50%;border:1px dashed #c7d3e5}
+.orbit.o2{inset:16%;border-color:#d6e0ee}
+.orbit.o3{inset:32%;border:0;background:radial-gradient(circle at 30% 30%,#1B5E96,var(--navy-800));box-shadow:0 30px 60px -20px rgba(11,27,51,.45);display:grid;place-items:center;color:#fff;text-align:center;font-weight:800;font-size:clamp(1rem,2vw,1.25rem);line-height:1.2;padding:10px}
+.orbit.o3 small{display:block;font-weight:500;font-size:12px;color:#9fb3cf;margin-top:4px}
+.sat{position:absolute;top:50%;left:50%;width:0;height:0;animation:spin var(--d,24s) linear infinite}
+.sat b{position:absolute;transform:translate(-50%,-50%) translateX(var(--r)) rotate(0deg);display:flex;align-items:center;gap:8px;white-space:nowrap;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);padding:9px 14px;border-radius:999px;font-size:13px;font-weight:700;color:var(--navy-700);animation:counter var(--d,24s) linear infinite}
+.sat b i{width:10px;height:10px;border-radius:50%;background:var(--c,var(--teal))}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes counter{from{transform:translate(-50%,-50%) translateX(var(--r)) rotate(0deg)}to{transform:translate(-50%,-50%) translateX(var(--r)) rotate(-360deg)}}
+.about-text p{color:var(--muted);margin-bottom:16px;font-size:1.05rem}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.pillar{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.pillar svg{width:26px;height:26px;color:var(--teal-600);margin-bottom:10px}
+.pillar b{display:block;color:var(--navy-800);font-size:15px}
+.pillar span{font-size:13px;color:var(--muted)}
 
-/* ── SOBRE ── */
-.sobre { background: var(--cinza-bg); }
-.sobre-inner { display: grid; grid-template-columns: 0.85fr 1fr; gap: 72px; align-items: center; max-width: 1100px; margin: 0 auto; }
-.sobre-logo-grande { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-.sobre-logo-grande svg { width: 150px; height: 150px; }
-.sobre-marca { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--azul); text-align: center; }
-.sobre-marca-sub { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; text-align: center; }
-.sobre-text p { font-size: 15.5px; line-height: 1.8; color: #3a4a5c; margin-bottom: 16px; }
-.socios { display: flex; gap: 18px; margin-top: 30px; }
-.socio-card { flex: 1; background: #fff; border-radius: 12px; padding: 20px; border: 1px solid var(--cinza-borda); }
-.socio-head { display: flex; align-items: center; gap: 12px; }
-.socio-avatar {
-  width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: #fff;
-}
-.socio-avatar.a { background: var(--azul); }
-.socio-avatar.b { background: var(--verde); }
-.socio-nome { font-weight: 600; font-size: 14px; color: var(--grafite); }
-.socio-cargo { font-size: 12px; color: var(--azul); margin-top: 2px; font-family: 'Inter', sans-serif; }
-.socio-cred { font-size: 11.5px; color: var(--muted); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--cinza-borda); }
+/* services */
+#servicos{background:#fff}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.svc{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
+.svc::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(29,175,110,.13),transparent 45%);opacity:0;transition:opacity .35s}
+.svc:hover{transform:translateY(-6px);box-shadow:0 24px 44px -24px rgba(11,27,51,.35);border-color:#bfeedd}
+.svc:hover::before{opacity:1}
+.svc .ico{position:relative;width:54px;height:54px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy-800),var(--navy-600));color:var(--teal);margin-bottom:20px;transition:transform .45s var(--ease)}
+.svc:hover .ico{transform:rotate(-8deg) scale(1.06)}
+.svc .ico svg{width:26px;height:26px}
+.svc h3{position:relative;font-size:1.2rem;color:var(--navy-800);letter-spacing:-.01em;margin-bottom:10px}
+.svc p{position:relative;color:var(--muted);font-size:.97rem}
+.svc .tag{position:relative;display:inline-block;margin-top:18px;font-size:12px;font-weight:700;color:var(--navy-600);background:#eef3fa;padding:5px 11px;border-radius:999px}
 
-/* ── SERVIÇOS ── */
-.servicos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 52px; max-width: 1100px; margin-left: auto; margin-right: auto; }
-.servico-card {
-  background: #fff; border: 1px solid var(--cinza-borda);
-  border-radius: 14px; padding: 30px 26px;
-  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
-  position: relative; overflow: hidden;
-}
-.servico-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px; background: linear-gradient(90deg, var(--azul), var(--azul-claro));
-  opacity: 0; transition: opacity 0.2s;
-}
-.servico-card:hover { box-shadow: 0 12px 36px rgba(13,27,42,0.08); transform: translateY(-4px); border-color: var(--azul-claro); }
-.servico-card:hover::before { opacity: 1; }
-.servico-icon {
-  width: 50px; height: 50px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 20px;
-}
-.servico-icon .ti { font-size: 26px; }
-.servico-icon.blue { background: #EBF4FF; color: var(--azul); }
-.servico-icon.green { background: #E3F7EE; color: var(--verde-escuro); }
-.servico-icon.navy { background: #E7ECF2; color: var(--grafite); }
-.servico-card h3 { font-family: 'DM Serif Display', serif; font-size: 19px; color: var(--grafite); margin-bottom: 10px; }
-.servico-card p { font-size: 14px; line-height: 1.7; color: var(--muted); }
-.servico-tag {
-  display: inline-block; margin-top: 18px;
-  font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600;
-  letter-spacing: 0.8px; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 5px;
-  background: var(--cinza-bg); color: var(--azul);
-}
+/* why */
+.why{background:var(--navy-900);color:#fff;position:relative;overflow:hidden}
+.why::before{content:"";position:absolute;width:700px;height:700px;right:-200px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(29,175,110,.18),transparent 65%)}
+.why .sec-head h2{color:#fff}
+.why .sec-head p{color:#a9bad3}
+.why .kicker{color:var(--teal)}
+.why-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:w}
+.why-item{border-top:1px solid rgba(255,255,255,.15);padding-top:26px;position:relative}
+.why-item::before{counter-increment:w;content:"0" counter(w);display:block;font-size:14px;font-weight:800;color:var(--teal);margin-bottom:14px;letter-spacing:.08em}
+.why-item::after{content:"";position:absolute;top:-1px;left:0;height:2px;width:0;background:var(--teal);transition:width 1.1s var(--ease) .2s}
+.why-item.in::after{width:56px}
+.why-item h3{font-size:1.15rem;margin-bottom:8px}
+.why-item p{color:#a9bad3;font-size:.96rem}
 
-/* ── DIFERENCIAIS ── */
-.diferenciais { background: var(--grafite); }
-.diferenciais .section-title { color: #fff; }
-.diferenciais .section-eyebrow { color: var(--verde-claro); }
-.dif-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 52px; max-width: 1100px; margin-left: auto; margin-right: auto; }
-.dif-item { padding: 28px 24px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; background: rgba(255,255,255,0.04); }
-.dif-num { font-family: 'DM Serif Display', serif; font-size: 38px; color: var(--azul-claro); opacity: 0.45; line-height: 1; }
-.dif-titulo { font-weight: 600; font-size: 15px; color: #fff; margin: 12px 0 8px; }
-.dif-texto { font-size: 13.5px; color: rgba(255,255,255,0.58); line-height: 1.65; }
+/* segments */
+.seg-tabs{display:inline-flex;background:#e9eef6;border-radius:999px;padding:5px;margin-bottom:34px;position:relative}
+.seg-tabs button{position:relative;z-index:1;padding:11px 22px;border-radius:999px;font-weight:700;color:var(--muted);transition:color .3s}
+.seg-tabs button[aria-selected="true"]{color:var(--navy-900)}
+.seg-tabs .pill{position:absolute;top:5px;bottom:5px;left:5px;border-radius:999px;background:#fff;box-shadow:0 4px 14px -6px rgba(11,27,51,.3);transition:transform .45s var(--ease),width .45s var(--ease)}
+.seg-panel{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+.seg-panel[hidden]{display:none}
+.seg-intro{background:linear-gradient(150deg,var(--navy-800),var(--navy-600));color:#fff;border-radius:22px;padding:34px;animation:fade .6s var(--ease)}
+.seg-intro h3{font-size:1.5rem;letter-spacing:-.02em;margin-bottom:10px}
+.seg-intro p{color:#c3d1e6}
+.seg-intro .who{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.seg-intro .who span{font-size:12px;font-weight:700;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 12px;border-radius:999px}
+.seg-list{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.seg-list li{list-style:none;display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;font-weight:600;color:var(--navy-700);font-size:.96rem;opacity:0;animation:fade .5s var(--ease) forwards;animation-delay:calc(var(--i) * 60ms)}
+.seg-list li svg{flex:none;width:20px;height:20px;color:var(--teal-600);margin-top:2px}
 
-/* ── SEGMENTOS ── */
-.segmentos-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-.segmento-bloco { background: var(--cinza-bg); border: 1px solid var(--cinza-borda); border-radius: 16px; padding: 38px; }
-.segmento-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
-.segmento-chip {
-  width: 46px; height: 46px; border-radius: 11px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.segmento-chip .ti { font-size: 24px; }
-.segmento-chip.blue { background: #EBF4FF; color: var(--azul); }
-.segmento-chip.navy { background: #E7ECF2; color: var(--grafite); }
-.segmento-bloco h3 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--grafite); }
-.segmento-bloco .seg-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
-.segmento-bloco ul { list-style: none; display: flex; flex-direction: column; gap: 13px; }
-.segmento-bloco ul li { font-size: 14px; color: #3a4a5c; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
-.segmento-bloco ul li .ti { color: var(--verde); font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+/* news */
+#noticias{background:#fff}
+.news-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.news-top .sec-head{margin-bottom:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font-size:14px;font-weight:700;padding:9px 16px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fff;transition:all .25s var(--ease)}
+.filters button:hover{border-color:var(--teal);color:var(--navy-800)}
+.filters button[aria-pressed="true"]{background:var(--navy-800);border-color:var(--navy-800);color:#fff}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.news-card{display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s;animation:fade .55s var(--ease) both;animation-delay:calc(var(--i,0) * 55ms)}
+.news-card:hover{transform:translateY(-5px);background:#fff;box-shadow:0 22px 40px -24px rgba(11,27,51,.35)}
+.news-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);margin-bottom:12px}
+.src{display:inline-flex;align-items:center;gap:7px;font-weight:800;color:var(--navy-700)}
+.src i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--teal))}
+.cat{white-space:nowrap;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:#e9eef6;color:var(--navy-600)}
+.news-card h3{font-size:1.04rem;line-height:1.38;color:var(--navy-800);margin-bottom:10px;letter-spacing:-.01em}
+.news-card p{font-size:.92rem;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.news-foot-row{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.news-card .more{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-weight:700;font-size:14px;color:var(--teal-600)}
+.news-card .more svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.news-card:hover .more svg{transform:translate(3px,-3px)}
+.skel{height:210px;border-radius:var(--radius);background:linear-gradient(100deg,#eef2f8 30%,#f8fafd 50%,#eef2f8 70%);background-size:300% 100%;animation:sk 1.4s infinite}
+@keyframes sk{to{background-position:-150% 0}}
+.news-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:26px;font-size:13px;color:var(--muted)}
+.news-empty{grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);background:var(--bg);border-radius:var(--radius)}
 
-/* ── CONTATO ── */
-.contato { background: var(--cinza-bg); }
-.contato-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: stretch; }
-.contato-info { display: flex; flex-direction: column; gap: 18px; margin-top: 36px; }
-.contato-item { display: flex; gap: 16px; align-items: center; }
-.contato-icon {
-  width: 46px; height: 46px; border-radius: 11px;
-  background: #fff; border: 1px solid var(--cinza-borda);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; color: var(--azul);
-}
-.contato-icon .ti { font-size: 20px; }
-.contato-label { font-family: 'Inter', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
-.contato-valor { font-size: 15px; font-weight: 500; color: var(--grafite); margin-top: 3px; }
-.contato-cta {
-  background: #fff; border-radius: 16px; padding: 38px;
-  border: 1px solid var(--cinza-borda); margin-top: 16px;
-  display: flex; flex-direction: column;
-}
-.contato-cta h3 { font-family: 'DM Serif Display', serif; font-size: 23px; color: var(--grafite); margin-bottom: 8px; }
-.contato-cta p { font-size: 14.5px; line-height: 1.65; color: var(--muted); margin-bottom: 26px; }
-.cta-btn {
-  display: flex; align-items: center; gap: 14px;
-  padding: 16px 20px; border-radius: 11px; text-decoration: none;
-  margin-bottom: 12px; transition: transform 0.15s, box-shadow 0.2s;
-}
-.cta-btn:hover { transform: translateY(-2px); }
-.cta-btn .ti { font-size: 24px; flex-shrink: 0; }
-.cta-btn .cta-btn-label { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.5px; opacity: 0.85; }
-.cta-btn .cta-btn-valor { font-size: 15px; font-weight: 600; margin-top: 2px; }
-.cta-btn .cta-arrow { margin-left: auto; opacity: 0.6; }
-.cta-whats { background: var(--verde); color: #fff; }
-.cta-whats:hover { box-shadow: 0 10px 28px rgba(29,175,110,0.28); }
-.cta-mail { background: var(--cinza-bg); color: var(--grafite); border: 1px solid var(--cinza-borda); }
-.cta-mail:hover { box-shadow: 0 10px 28px rgba(13,27,42,0.08); }
-.cta-mail .ti:first-child { color: var(--azul); }
-.contato-nota {
-  margin-top: auto; padding-top: 22px;
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13px; color: var(--muted); line-height: 1.5;
-}
-.contato-nota .ti { font-size: 18px; color: var(--verde); flex-shrink: 0; }
+/* contact */
+.contact{background:linear-gradient(160deg,var(--navy-900),var(--navy-700));color:#fff;position:relative;overflow:hidden}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;position:relative}
+.contact .sec-head h2{color:#fff}
+.contact .sec-head p{color:#a9bad3}
+.contact .kicker{color:var(--teal)}
+.c-list{display:grid;gap:14px;margin-top:10px}
+.c-item{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);transition:background .3s,transform .3s var(--ease)}
+a.c-item:hover{background:rgba(255,255,255,.1);transform:translateX(6px)}
+.c-item .ic{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:rgba(29,175,110,.14);color:var(--teal)}
+.c-item .ic svg{width:22px;height:22px}
+.c-item small{display:block;color:#9fb3cf;font-size:12px}
+.c-item b{font-size:15px;overflow-wrap:anywhere}
+.contact-grid>*,.about-grid>*,.seg-panel>*{min-width:0}
+form.card{background:#fff;color:var(--ink);border-radius:24px;padding:32px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+form.card h3{color:var(--navy-800);font-size:1.3rem;margin-bottom:4px}
+form.card>p{color:var(--muted);font-size:14px;margin-bottom:20px}
+.field{position:relative;margin-bottom:14px}
+.field input,.field select,.field textarea{width:100%;font:inherit;font-size:15px;padding:20px 16px 8px;border:1.5px solid var(--line);border-radius:12px;background:#fbfcfe;color:var(--ink);transition:border-color .25s,box-shadow .25s;appearance:none}
+.field textarea{min-height:110px;resize:vertical}
+.field label{position:absolute;left:17px;top:15px;font-size:15px;color:var(--muted);pointer-events:none;transition:all .2s var(--ease)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(29,175,110,.15)}
+.field input:focus+label,.field input:not(:placeholder-shown)+label,.field textarea:focus+label,.field textarea:not(:placeholder-shown)+label,.field select+label{top:6px;font-size:11px;font-weight:700;color:var(--teal-600);letter-spacing:.04em}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--muted);margin:6px 0 18px}
+.consent input{margin-top:3px;accent-color:var(--teal-600);width:16px;height:16px;flex:none}
+form.card .btn{width:100%;justify-content:center}
+form.card .btn[disabled]{opacity:.7;cursor:wait;transform:none}
+.form-msg{display:none;margin-top:14px;padding:12px 14px;border-radius:12px;font-size:14px;font-weight:600}
+.form-msg.ok{display:block;background:#e8f8f0;color:#0f6b43}
+.form-msg.erro{display:block;background:#fdecec;color:#a42424}
+.field.bad input{border-color:#ef4444}
 
-/* ── FORMULARIO (opcional, adicional ao WhatsApp/e-mail) ── */
-.contato-divisor {
-  display: flex; align-items: center; gap: 12px;
-  margin: 22px 0; font-family: 'Inter', sans-serif; font-size: 11px;
-  color: var(--muted); text-transform: uppercase; letter-spacing: 1px;
-}
-.contato-divisor::before, .contato-divisor::after {
-  content: ''; flex: 1; height: 1px; background: var(--cinza-borda);
-}
-.contato-form { display: flex; flex-direction: column; gap: 10px; }
-.contato-form input, .contato-form textarea {
-  width: 100%; font-family: 'Inter', sans-serif; font-size: 13.5px;
-  padding: 11px 13px; border: 1px solid var(--cinza-borda); border-radius: 8px;
-  outline: none; color: var(--texto); background: #fff;
-}
-.contato-form input:focus, .contato-form textarea:focus { border-color: var(--azul-claro); }
-.contato-form textarea { resize: vertical; min-height: 60px; font-family: 'DM Sans', sans-serif; }
-.contato-form button {
-  font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600;
-  background: var(--azul); color: #fff; border: none; border-radius: 8px;
-  padding: 12px; cursor: pointer; transition: background 0.15s;
-}
-.contato-form button:hover { background: var(--azul-escuro); }
-.contato-form button:disabled { opacity: 0.6; cursor: not-allowed; }
-.contato-form-msg { font-size: 12.5px; font-family: 'Inter', sans-serif; display: none; }
-.contato-form-msg.ok { color: var(--verde-escuro); }
-.contato-form-msg.erro { color: #c0392b; }
+/* footer */
+footer{background:var(--navy-900);color:#9fb3cf;padding:64px 0 28px;font-size:14px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+footer h4{color:#fff;font-size:14px;margin-bottom:14px;letter-spacing:.02em}
+footer ul{list-style:none;display:grid;gap:9px}
+footer a:hover{color:var(--teal)}
+.f-bottom{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px}
 
-/* ── FOOTER ── */
-footer { background: var(--grafite); padding: 48px 6% 32px; }
-.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; gap: 32px; }
-.footer-brand { max-width: 280px; }
-.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-.footer-logo-ms { font-family: 'DM Serif Display', serif; font-size: 18px; color: #fff; }
-.footer-logo-sub { font-family: 'Inter', sans-serif; font-size: 8px; letter-spacing: 2.5px; color: rgba(255,255,255,0.4); text-transform: uppercase; display: block; margin-top: 2px; }
-.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; }
-.footer-links h4 { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
-.footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.footer-links ul li a { font-size: 13.5px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; }
-.footer-links ul li a:hover { color: var(--verde-claro); }
-.footer-bottom { max-width: 1100px; margin: 24px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-.footer-bottom p { font-size: 12.5px; color: rgba(255,255,255,0.32); }
-.footer-cnpj { font-family: 'Inter', sans-serif; font-size: 11.5px; color: rgba(255,255,255,0.28); }
+/* whatsapp fab */
+.fab{position:fixed;right:20px;bottom:20px;z-index:90;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#25d366;color:#fff;box-shadow:0 14px 30px -10px rgba(37,211,102,.7);transform:scale(0);transition:transform .45s var(--ease)}
+.fab.show{transform:scale(1)}
+.fab::before{content:"";position:absolute;inset:0;border-radius:50%;background:#25d366;animation:halo 2.4s infinite;z-index:-1}
+@keyframes halo{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.7);opacity:0}}
+.fab svg{width:30px;height:30px}
 
-/* ── RESPONSIVO ── */
-@media (max-width: 980px) {
-  .nav-links { display: none; }
-  .sobre-inner, .contato-inner, .segmentos-inner { grid-template-columns: 1fr; gap: 40px; }
-  .servicos-grid { grid-template-columns: 1fr 1fr; }
-  .dif-grid { grid-template-columns: 1fr 1fr; }
-  .stats-band { flex-wrap: wrap; gap: 16px; }
-  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 16px; min-width: 200px; }
-  .stat-item:last-child { border-bottom: none; }
-  .hero-visual { display: none; }
+/* ---------- responsive ---------- */
+@media (max-width:1024px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-card{max-width:520px}
+  .svc-grid,.news-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:repeat(2,1fr);row-gap:36px}
+  .about-grid,.contact-grid,.seg-panel{grid-template-columns:1fr}
+  .about-visual{margin:0 auto;width:100%}
+  .f-grid{grid-template-columns:1fr 1fr}
 }
-@media (max-width: 560px) {
-  .servicos-grid, .dif-grid { grid-template-columns: 1fr; }
-  section { padding: 64px 5%; }
-  .socios { flex-direction: column; }
+@media (max-width:860px){
+  .burger{display:inline-flex}
+  .menu{position:fixed;inset:0 0 0 auto;width:min(320px,86vw);flex-direction:column;align-items:stretch;gap:4px;padding:90px 22px 24px;background:var(--navy-900);transform:translateX(100%);transition:transform .45s var(--ease);box-shadow:-20px 0 40px -20px rgba(0,0,0,.6)}
+  .menu.open{transform:none}
+  .menu a{font-size:17px;padding:14px 16px}
+  .menu a::after{display:none}
+  .menu .btn{margin-top:14px;justify-content:center}
+  .burger{position:relative;z-index:110}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media (max-width:640px){
+  section{padding:80px 0}
+  .wrap{padding:0 16px}
+  .svc-grid,.news-grid,.why-grid,.seg-list,.pillars,.row2{grid-template-columns:1fr}
+  .float-tag.t1{left:-6px;bottom:-18px}
+  .float-tag.t2{right:-4px}
+  .hero{padding-top:110px}
+  .seg-tabs{display:flex;width:100%}
+  .seg-tabs button{flex:1;padding:11px 10px;font-size:14px}
+  .f-grid{grid-template-columns:1fr}
+  .sat b{font-size:11.5px;padding:7px 11px}
+  .about-visual{--rad:34vw}
+  .scroll-cue{display:none}
+  .reveal.left,.reveal.right{transform:translateY(28px)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+  .sat,.sat b{animation:none}
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="progress" aria-hidden="true"></div>
 
-<!-- NAV -->
-<nav data-screen-label="Navegação">
-  <a href="#inicio" class="nav-logo">
-    <svg class="logo-svg" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g class="nc1"><circle cx="22" cy="22" r="16" fill="none" stroke="#1B5E96" stroke-width="3" opacity="0.9"/></g>
-      <g class="nc2"><circle cx="38" cy="22" r="16" fill="none" stroke="#4AAEE8" stroke-width="3" opacity="0.9"/></g>
-      <g class="nc3"><circle cx="30" cy="36" r="16" fill="none" stroke="#1DAF6E" stroke-width="3" opacity="0.9"/></g>
-      <circle cx="30" cy="27" r="4" fill="#1DAF6E"/>
-    </svg>
-    <div class="nav-logo-text">
-      <span class="nav-logo-ms">MS Gestão &amp; Tecnologia</span>
-      <span class="nav-logo-sub">Milaré &amp; Souza Consultoria</span>
-    </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#segmentos">Segmentos</a></li>
-    <li><a href="#contato">Contato</a></li>
-  </ul>
-  <div class="nav-actions">
-    <a href="https://wa.me/5544999069725?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20MS%20Gest%C3%A3o%20%26%20Tecnologia." target="_blank" rel="noopener" class="nav-cta" data-track="clique_whatsapp"><i class="ti ti-brand-whatsapp"></i> Fale conosco</a>
+<header class="site" id="topo">
+  <div class="wrap nav">
+    <a href="#inicio" class="brand" aria-label="MS Gestão & Tecnologia — início">
+      <svg class="logo" viewBox="0 0 60 60" fill="none" aria-hidden="true"><g class="nc1"><circle cx="22" cy="22" r="16" stroke="#1B5E96" stroke-width="3"/></g><g class="nc2"><circle cx="38" cy="22" r="16" stroke="#4AAEE8" stroke-width="3"/></g><g class="nc3"><circle cx="30" cy="36" r="16" stroke="#1DAF6E" stroke-width="3"/></g><circle class="core" cx="30" cy="27" r="4" fill="#1DAF6E"/></svg>
+      <span>MS Gestão &amp; Tecnologia<small>Milaré &amp; Souza Consultoria</small></span>
+    </a>
+    <button class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#segmentos">Segmentos</a>
+      <a href="#noticias">Notícias</a>
+      <a href="#contato">Contato</a>
+      <a class="btn btn-primary btn-sm" href="https://wa.me/5544999069725?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20a%20MS%20Gest%C3%A3o%20%26%20Tecnologia." target="_blank" rel="noopener" data-track="clique_whatsapp">Fale conosco</a>
+    </nav>
   </div>
-</nav>
+</header>
 
-<!-- HERO -->
-<section class="hero" id="inicio" data-screen-label="Hero">
-  <div class="hero-content">
-    <span class="hero-eyebrow">Consultoria · Gestão · Tecnologia</span>
-    <h1>Sua empresa com <em>mais eficiência</em> e menos complexidade</h1>
-    <p>Unimos expertise contábil, visão de negócios e tecnologia para transformar a forma como sua empresa opera — do planejamento à execução.</p>
-    <div class="hero-btns">
-      <a href="#servicos" class="btn-primary">Conheça nossos serviços <i class="ti ti-arrow-right"></i></a>
-      <a href="#contato" class="btn-secondary"><i class="ti ti-message-circle"></i> Solicitar diagnóstico</a>
+<main id="conteudo">
+<!-- ================= HERO ================= -->
+<section class="hero" id="inicio" aria-label="Apresentação">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Consultoria · Gestão · Tecnologia</span>
+      <h1>
+        <span class="line"><span>Sua empresa com</span></span>
+        <span class="line"><span><span class="grad">mais eficiência</span></span></span>
+        <span class="line"><span>e menos complexidade</span></span>
+      </h1>
+      <p class="lead">Unimos expertise contábil, visão de negócios e tecnologia para transformar a forma como sua empresa opera — do planejamento à execução.</p>
+      <p class="lead rot-line">Especialistas em <span class="rotator" aria-hidden="true"><span class="on">gestão financeira</span><span>sistemas sob medida</span><span>processos enxutos</span><span>compliance e LGPD</span><span>Lei 14.133/21</span></span></p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#contato">Solicitar diagnóstico
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#servicos">Conhecer serviços</a>
+      </div>
+    </div>
+
+    <div class="hero-card" aria-hidden="true">
+      <div class="panel" id="tilt">
+        <div class="panel-head"><span><b>Painel de gestão</b><br>Fluxo de caixa · últimos 7 meses</span><span class="chip">ilustrativo</span></div>
+        <div class="bars">
+          <i style="height:38%;animation-delay:.9s"></i><i style="height:52%;animation-delay:1s"></i><i style="height:46%;animation-delay:1.1s"></i>
+          <i style="height:64%;animation-delay:1.2s"></i><i style="height:58%;animation-delay:1.3s"></i><i style="height:78%;animation-delay:1.4s"></i><i style="height:92%;animation-delay:1.5s"></i>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><small>Retrabalho</small><strong>−32%</strong></div>
+          <div class="kpi"><small>Margem</small><strong>18,4%</strong> <span class="up">▲</span></div>
+          <div class="kpi"><small>Processos</small><strong>12</strong> <span class="up">auto</span></div>
+        </div>
+      </div>
+      <div class="float-tag t1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>LGPD em conformidade</div>
+      <div class="float-tag t2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span>Lei 14.133/21</div>
     </div>
   </div>
-  <!-- Logo animado: círculos convergem para formar a marca -->
-  <div class="hero-visual">
-    <svg viewBox="0 0 400 400" width="440" height="440" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="glowCenter" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#1DAF6E" stop-opacity="0.18"/>
-          <stop offset="100%" stop-color="#1DAF6E" stop-opacity="0"/>
-        </radialGradient>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="3" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-      <circle cx="200" cy="183" r="70" fill="url(#glowCenter)">
-        <animate attributeName="opacity" values="0;0;0.8;0.8;0.5;0.8" dur="7s" repeatCount="indefinite"/>
-      </circle>
-      <circle r="90" fill="none" stroke="#1B5E96" stroke-width="2" opacity="0.75" filter="url(#glow)">
-        <animate attributeName="cx" values="80;80;170;170;170;80" keyTimes="0;0.05;0.45;0.55;0.75;1" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0 0 1 1; 0.4 0 0.2 1; 0.4 0 0.2 1" dur="7s" repeatCount="indefinite"/>
-        <animate attributeName="cy" values="80;80;163;163;163;80" keyTimes="0;0.05;0.45;0.55;0.75;1" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0 0 1 1; 0.4 0 0.2 1; 0.4 0 0.2 1" dur="7s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;0.7;0.75;0.75;0.6;0" keyTimes="0;0.05;0.45;0.55;0.75;1" dur="7s" repeatCount="indefinite"/>
-      </circle>
-      <circle r="90" fill="none" stroke="#4AAEE8" stroke-width="2" opacity="0.65" filter="url(#glow)">
-        <animate attributeName="cx" values="320;320;230;230;230;320" keyTimes="0;0.05;0.45;0.55;0.75;1" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0 0 1 1; 0.4 0 0.2 1; 0.4 0 0.2 1" dur="7s" repeatCount="indefinite"/>
-        <animate attributeName="cy" values="80;80;163;163;163;80" keyTimes="0;0.05;0.45;0.55;0.75;1" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0 0 1 1; 0.4 0 0.2 1; 0.4 0 0.2 1" dur="7s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;0.6;0.65;0.65;0.5;0" keyTimes="0;0.05;0.45;0.55;0.75;1" dur="7s" repeatCount="indefinite"/>
-      </circle>
-      <circle r="90" fill="none" stroke="#1DAF6E" stroke-width="2" opacity="0.65" filter="url(#glow)">
-        <animate attributeName="cx" values="200;200;200;200;200;200" dur="7s" repeatCount="indefinite"/>
-        <animate attributeName="cy" values="360;360;207;207;207;360" keyTimes="0;0.05;0.45;0.55;0.75;1" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0 0 1 1; 0.4 0 0.2 1; 0.4 0 0.2 1" dur="7s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;0.6;0.65;0.65;0.5;0" keyTimes="0;0.05;0.45;0.55;0.75;1" dur="7s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="200" cy="178" r="8" fill="#1DAF6E">
-        <animate attributeName="opacity" values="0;0;0;1;1;0" keyTimes="0;0.04;0.44;0.55;0.75;1" dur="7s" repeatCount="indefinite"/>
-        <animate attributeName="r" values="0;0;0;8;10;8;0" keyTimes="0;0.04;0.44;0.55;0.65;0.75;1" dur="7s" repeatCount="indefinite"/>
-      </circle>
-    </svg>
-  </div>
+  <a href="#sobre" class="scroll-cue" aria-label="Rolar para a próxima seção"></a>
 </section>
 
-<!-- STATS BAND -->
-<div class="stats-band">
-  <div class="stat-item">
-    <span class="stat-num">+10<span> anos</span></span>
-    <span class="stat-label">de experiência em gestão</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">Gestão <span>+</span> TI</span>
-    <span class="stat-label">duas competências, um time</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">PR · MS · SP</span>
-    <span class="stat-label">atuação regional</span>
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stats-grid reveal">
+      <div class="stat"><strong><span data-count="10">0</span><em>+</em></strong><span>anos de experiência em gestão</span></div>
+      <div class="stat"><strong><span data-count="6">0</span></strong><span>frentes de consultoria</span></div>
+      <div class="stat"><strong><span data-count="3">0</span></strong><span>estados atendidos (PR, MS, SP)</span></div>
+      <div class="stat"><strong><span data-count="24">0</span><em>h</em></strong><span>úteis para retorno</span></div>
+    </div>
   </div>
 </div>
 
-<!-- SOBRE -->
-<section class="sobre" id="sobre" data-screen-label="Sobre">
-  <div class="sobre-inner">
-    <div class="sobre-logo-grande">
-      <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="52" cy="52" r="38" fill="none" stroke="#1B5E96" stroke-width="4" opacity="0.85"/>
-        <circle cx="88" cy="52" r="38" fill="none" stroke="#4AAEE8" stroke-width="4" opacity="0.85"/>
-        <circle cx="70" cy="84" r="38" fill="none" stroke="#1DAF6E" stroke-width="4" opacity="0.85"/>
-        <circle cx="70" cy="63" r="9" fill="#1DAF6E"/>
-      </svg>
-      <div class="sobre-marca">MS Gestão &amp; Tecnologia</div>
-      <div class="sobre-marca-sub">Milaré &amp; Souza Consultoria Ltda.</div>
+<!-- ================= SOBRE ================= -->
+<section id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-visual reveal left" aria-hidden="true">
+      <div class="orbit"></div><div class="orbit o2"></div>
+      <div class="orbit o3"><div>Visão integrada<small>contábil + TI</small></div></div>
+      <div class="sat" style="--d:30s"><b style="--r:var(--rad);--c:#1B5E96"><i></i>Contabilidade</b></div>
+      <div class="sat" style="--d:30s;animation-delay:-10s"><b style="--r:var(--rad);--c:#4AAEE8;animation-delay:-10s"><i></i>Tecnologia</b></div>
+      <div class="sat" style="--d:30s;animation-delay:-20s"><b style="--r:var(--rad);--c:#1DAF6E;animation-delay:-20s"><i></i>Gestão</b></div>
     </div>
-    <div class="sobre-text">
-      <span class="section-eyebrow">Quem somos</span>
-      <h2 class="section-title">Consultoria com raiz contábil e visão tecnológica</h2>
-      <p>A MS Gestão &amp; Tecnologia nasceu da união de duas competências complementares: a profundidade técnica da contabilidade e o olhar estratégico da tecnologia da informação.</p>
-      <p>Somos uma consultoria especializada em estruturar e otimizar negócios — desde o diagnóstico financeiro até a implantação de sistemas e processos que fazem a empresa funcionar melhor, todos os dias.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SERVIÇOS -->
-<section id="servicos" style="background:#fff;" data-screen-label="Serviços">
-  <div style="max-width:1100px; margin:0 auto;">
-    <span class="section-eyebrow">O que fazemos</span>
-    <h2 class="section-title">Serviços de consultoria</h2>
-    <p class="section-sub">Soluções integradas para empresas privadas e órgãos públicos que buscam mais eficiência, controle e crescimento sustentável.</p>
-  </div>
-  <div class="servicos-grid">
-    <div class="servico-card">
-      <div class="servico-icon green"><i class="ti ti-chart-bar"></i></div>
-      <h3>Gestão Financeira</h3>
-      <p>Estruturação do fluxo de caixa, controle de receitas e despesas, DRE gerencial e planejamento orçamentário para tomada de decisão segura.</p>
-      <span class="servico-tag">Empresas · Privado</span>
-    </div>
-    <div class="servico-card">
-      <div class="servico-icon blue"><i class="ti ti-settings"></i></div>
-      <h3>Consultoria em TI</h3>
-      <p>Implantação de sistemas de gestão, automação de processos, integração de ferramentas e desenvolvimento de soluções sob medida para o seu negócio.</p>
-      <span class="servico-tag">Empresas · Setor Público</span>
-    </div>
-    <div class="servico-card">
-      <div class="servico-icon blue"><i class="ti ti-route"></i></div>
-      <h3>Reestruturação de Processos</h3>
-      <p>Mapeamento e redesenho de processos internos para eliminar retrabalho, reduzir custos operacionais e aumentar a produtividade das equipes.</p>
-      <span class="servico-tag">Todos os segmentos</span>
-    </div>
-    <div class="servico-card">
-      <div class="servico-icon navy"><i class="ti ti-building-bank"></i></div>
-      <h3>Consultoria para Setor Público</h3>
-      <p>Apoio a prefeituras, autarquias e entidades públicas em gestão de contratos, compliance, transparência e eficiência administrativa.</p>
-      <span class="servico-tag">Setor Público</span>
-    </div>
-    <div class="servico-card">
-      <div class="servico-icon green"><i class="ti ti-target-arrow"></i></div>
-      <h3>Planejamento Estratégico</h3>
-      <p>Diagnóstico organizacional, definição de metas e OKRs, análise de mercado e construção de planos de ação com acompanhamento de resultados.</p>
-      <span class="servico-tag">Empresas · Startups</span>
-    </div>
-    <div class="servico-card">
-      <div class="servico-icon blue"><i class="ti ti-shield-check"></i></div>
-      <h3>Conformidade &amp; Compliance</h3>
-      <p>Adequação à LGPD, gestão fiscal sob o Simples Nacional, controle de obrigações acessórias e suporte a auditorias e prestações de contas.</p>
-      <span class="servico-tag">Empresas · Privado</span>
+    <div class="about-text">
+      <div class="sec-head reveal" style="margin-bottom:24px">
+        <span class="kicker">Quem somos</span>
+        <h2>Consultoria com raiz contábil e visão tecnológica</h2>
+      </div>
+      <p class="reveal" style="--i:1">A MS Gestão &amp; Tecnologia nasceu da união de duas competências complementares: a profundidade técnica da contabilidade e o olhar estratégico da tecnologia da informação.</p>
+      <p class="reveal" style="--i:2">Somos uma consultoria especializada em estruturar e otimizar negócios — desde o diagnóstico financeiro até a implantação de sistemas e processos que fazem a empresa funcionar melhor, todos os dias.</p>
+      <div class="pillars">
+        <div class="pillar reveal" style="--i:3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><b>Diagnóstico</b><span>Entendemos antes de propor</span></div>
+        <div class="pillar reveal" style="--i:4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg><b>Implantação</b><span>Sistemas e processos reais</span></div>
+        <div class="pillar reveal" style="--i:5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><b>Autonomia</b><span>Sua equipe no comando</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- DIFERENCIAIS -->
-<section class="diferenciais" data-screen-label="Diferenciais">
-  <div style="max-width:1100px; margin:0 auto;">
-    <span class="section-eyebrow">Por que a MS</span>
-    <h2 class="section-title">Consultoria que entrega resultado,<br>não só relatório</h2>
-  </div>
-  <div class="dif-grid">
-    <div class="dif-item">
-      <div class="dif-num">01</div>
-      <div class="dif-titulo">Visão integrada</div>
-      <div class="dif-texto">Contabilidade e TI no mesmo time — a solução financeira e tecnológica saem do mesmo diagnóstico.</div>
+<!-- ================= SERVIÇOS ================= -->
+<section id="servicos">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="kicker">O que fazemos</span>
+      <h2>Serviços de consultoria</h2>
+      <p>Soluções integradas para empresas privadas e órgãos públicos que buscam mais eficiência, controle e crescimento sustentável.</p>
     </div>
-    <div class="dif-item">
-      <div class="dif-num">02</div>
-      <div class="dif-titulo">Sob medida</div>
-      <div class="dif-texto">Nenhum processo é genérico. Cada entrega é construída a partir da realidade e do porte do cliente.</div>
-    </div>
-    <div class="dif-item">
-      <div class="dif-num">03</div>
-      <div class="dif-titulo">Implantação real</div>
-      <div class="dif-texto">Não ficamos no papel. Acompanhamos a implantação até o time do cliente operar com autonomia.</div>
-    </div>
-    <div class="dif-item">
-      <div class="dif-num">04</div>
-      <div class="dif-titulo">Paraná, MS e SP</div>
-      <div class="dif-texto">Atendimento presencial e remoto nos estados do Paraná, Mato Grosso do Sul e São Paulo.</div>
+    <div class="svc-grid">
+      <article class="svc reveal" style="--i:0">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></div>
+        <h3>Gestão Financeira</h3>
+        <p>Estruturação do fluxo de caixa, controle de receitas e despesas, DRE gerencial e planejamento orçamentário para tomada de decisão segura.</p>
+        <span class="tag">Empresas · Privado</span>
+      </article>
+      <article class="svc reveal" style="--i:1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l3 3-3 3M13 15h4"/></svg></div>
+        <h3>Consultoria em TI</h3>
+        <p>Implantação de sistemas de gestão, automação de processos, integração de ferramentas e desenvolvimento de soluções sob medida para o seu negócio.</p>
+        <span class="tag">Empresas · Setor Público</span>
+      </article>
+      <article class="svc reveal" style="--i:2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6a3 3 0 0 1 3 3v6M15 18H9a3 3 0 0 1-3-3V9"/></svg></div>
+        <h3>Reestruturação de Processos</h3>
+        <p>Mapeamento e redesenho de processos internos para eliminar retrabalho, reduzir custos operacionais e aumentar a produtividade das equipes.</p>
+        <span class="tag">Todos os segmentos</span>
+      </article>
+      <article class="svc reveal" style="--i:3">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10M19 21V10M9 21v-7M15 21v-7M2 10l10-7 10 7"/></svg></div>
+        <h3>Consultoria para Setor Público</h3>
+        <p>Apoio a prefeituras, autarquias e entidades públicas em gestão de contratos, compliance, transparência e eficiência administrativa.</p>
+        <span class="tag">Setor Público</span>
+      </article>
+      <article class="svc reveal" style="--i:4">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
+        <h3>Planejamento Estratégico</h3>
+        <p>Diagnóstico organizacional, definição de metas e OKRs, análise de mercado e construção de planos de ação com acompanhamento de resultados.</p>
+        <span class="tag">Empresas · Startups</span>
+      </article>
+      <article class="svc reveal" style="--i:5">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Conformidade &amp; Compliance</h3>
+        <p>Adequação à LGPD, gestão fiscal sob o Simples Nacional, controle de obrigações acessórias e suporte a auditorias e prestações de contas.</p>
+        <span class="tag">Empresas · Privado</span>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- SEGMENTOS -->
-<section id="segmentos" style="background:#fff;" data-screen-label="Segmentos">
-  <div style="max-width:1100px; margin:0 auto; margin-bottom:48px;">
-    <span class="section-eyebrow">Quem atendemos</span>
-    <h2 class="section-title">Dois universos, uma consultoria</h2>
-    <p class="section-sub">Nossa experiência abrange tanto o setor privado quanto o público, com metodologias adaptadas a cada realidade.</p>
+<!-- ================= POR QUE ================= -->
+<section class="why" aria-labelledby="why-t">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Por que a MS</span>
+      <h2 id="why-t">Consultoria que entrega resultado, não só relatório</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal" style="--i:0"><h3>Visão integrada</h3><p>Contabilidade e TI no mesmo time — a solução financeira e tecnológica saem do mesmo diagnóstico.</p></div>
+      <div class="why-item reveal" style="--i:1"><h3>Sob medida</h3><p>Nenhum processo é genérico. Cada entrega é construída a partir da realidade e do porte do cliente.</p></div>
+      <div class="why-item reveal" style="--i:2"><h3>Implantação real</h3><p>Não ficamos no papel. Acompanhamos a implantação até o time do cliente operar com autonomia.</p></div>
+      <div class="why-item reveal" style="--i:3"><h3>Paraná, MS e SP</h3><p>Atendimento presencial e remoto nos estados do Paraná, Mato Grosso do Sul e São Paulo.</p></div>
+    </div>
   </div>
-  <div class="segmentos-inner">
-    <div class="segmento-bloco">
-      <div class="segmento-head">
-        <div class="segmento-chip blue"><i class="ti ti-building-skyscraper"></i></div>
+</section>
+
+<!-- ================= SEGMENTOS ================= -->
+<section id="segmentos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Quem atendemos</span>
+      <h2>Dois universos, uma consultoria</h2>
+      <p>Nossa experiência abrange tanto o setor privado quanto o público, com metodologias adaptadas a cada realidade.</p>
+    </div>
+    <div class="seg-tabs reveal" role="tablist" aria-label="Segmentos atendidos">
+      <span class="pill" aria-hidden="true"></span>
+      <button role="tab" id="tab-priv" aria-controls="p-priv" aria-selected="true">Setor privado</button>
+      <button role="tab" id="tab-pub" aria-controls="p-pub" aria-selected="false" tabindex="-1">Setor público</button>
+    </div>
+
+    <div class="seg-panel" id="p-priv" role="tabpanel" aria-labelledby="tab-priv">
+      <div class="seg-intro">
         <h3>Setor Privado</h3>
+        <p>Estrutura financeira, sistemas e processos para crescer com controle e previsibilidade.</p>
+        <div class="who"><span>MEI</span><span>ME</span><span>EPP</span><span>Médio porte</span></div>
       </div>
-      <p class="seg-sub">MEI, ME, EPP e empresas de médio porte</p>
-      <ul>
-        <li><i class="ti ti-arrow-right"></i> Estruturação financeira e fluxo de caixa</li>
-        <li><i class="ti ti-arrow-right"></i> Implantação de ERP e sistemas de gestão</li>
-        <li><i class="ti ti-arrow-right"></i> Controle de contratos e faturamento</li>
-        <li><i class="ti ti-arrow-right"></i> Planejamento tributário Simples Nacional</li>
-        <li><i class="ti ti-arrow-right"></i> Processos internos e gestão de equipes</li>
-        <li><i class="ti ti-arrow-right"></i> Adequação LGPD e segurança da informação</li>
+      <ul class="seg-list">
+        <li style="--i:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Estruturação financeira e fluxo de caixa</li>
+        <li style="--i:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Implantação de ERP e sistemas de gestão</li>
+        <li style="--i:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Controle de contratos e faturamento</li>
+        <li style="--i:3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Planejamento tributário Simples Nacional</li>
+        <li style="--i:4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Processos internos e gestão de equipes</li>
+        <li style="--i:5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Adequação LGPD e segurança da informação</li>
       </ul>
     </div>
-    <div class="segmento-bloco">
-      <div class="segmento-head">
-        <div class="segmento-chip navy"><i class="ti ti-building-bank"></i></div>
+
+    <div class="seg-panel" id="p-pub" role="tabpanel" aria-labelledby="tab-pub" hidden>
+      <div class="seg-intro">
         <h3>Setor Público</h3>
+        <p>Apoio técnico para uma gestão pública mais eficiente, transparente e em conformidade.</p>
+        <div class="who"><span>Prefeituras</span><span>Autarquias</span><span>Entidades</span></div>
       </div>
-      <p class="seg-sub">Prefeituras, autarquias e entidades</p>
-      <ul>
-        <li><i class="ti ti-arrow-right"></i> Gestão e controle de contratos administrativos</li>
-        <li><i class="ti ti-arrow-right"></i> Consultoria em licitações e Lei 14.133/21</li>
-        <li><i class="ti ti-arrow-right"></i> Sistemas de transparência e prestação de contas</li>
-        <li><i class="ti ti-arrow-right"></i> Automação de processos administrativos</li>
-        <li><i class="ti ti-arrow-right"></i> Capacitação de servidores em gestão e TI</li>
-        <li><i class="ti ti-arrow-right"></i> Compliance e controle interno</li>
+      <ul class="seg-list">
+        <li style="--i:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Gestão e controle de contratos administrativos</li>
+        <li style="--i:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Consultoria em licitações e Lei 14.133/21</li>
+        <li style="--i:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sistemas de transparência e prestação de contas</li>
+        <li style="--i:3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Automação de processos administrativos</li>
+        <li style="--i:4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Capacitação de servidores em gestão e TI</li>
+        <li style="--i:5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Compliance e controle interno</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- CONTATO -->
-<section class="contato" id="contato" data-screen-label="Contato">
-  <div class="contato-inner">
+<!-- ================= NOTÍCIAS ================= -->
+<section id="noticias" aria-labelledby="news-t">
+  <div class="wrap">
+    <div class="news-top">
+      <div class="sec-head reveal">
+        <span class="kicker">Radar MS</span>
+        <h2 id="news-t">Notícias de tecnologia e gestão</h2>
+        <p>Manchetes selecionadas de veículos especializados, atualizadas automaticamente.</p>
+      </div>
+      <div class="filters reveal" role="group" aria-label="Filtrar notícias por tema" id="filters">
+        <button aria-pressed="true" data-cat="todas">Todas</button>
+      </div>
+    </div>
+    <div class="news-grid" id="news" aria-live="polite" aria-busy="true">
+      <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+      <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+    </div>
+    <div class="news-foot">
+      <span id="news-updated">Carregando…</span>
+      <span>Conteúdo e direitos pertencem aos respectivos veículos. Os links abrem a matéria original.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTATO ================= -->
+<section class="contact" id="contato">
+  <div class="wrap contact-grid">
     <div>
-      <span class="section-eyebrow">Fale conosco</span>
-      <h2 class="section-title">Vamos conversar sobre seu negócio</h2>
-      <p class="section-sub">Solicite um diagnóstico sem compromisso. Respondemos pelo WhatsApp ou e-mail em até 24 horas úteis.</p>
-      <div class="contato-info">
-        <div class="contato-item">
-          <div class="contato-icon"><i class="ti ti-world"></i></div>
-          <div>
-            <div class="contato-label">Site</div>
-            <div class="contato-valor">msgestaotecnologia.com.br</div>
-          </div>
+      <div class="sec-head reveal">
+        <span class="kicker">Fale conosco</span>
+        <h2>Vamos conversar sobre seu negócio</h2>
+        <p>Solicite um diagnóstico sem compromisso. Respondemos pelo WhatsApp ou e-mail em até 24 horas úteis.</p>
+      </div>
+      <div class="c-list">
+        <a class="c-item reveal" style="--i:0" href="https://wa.me/5544999069725?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20diagn%C3%B3stico%20com%20a%20MS%20Gest%C3%A3o%20%26%20Tecnologia." target="_blank" rel="noopener" data-track="clique_whatsapp">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg></span>
+          <span><small>Conversar agora pelo WhatsApp</small><b>(44) 99906-9725</b></span>
+        </a>
+        <a class="c-item reveal" style="--i:1" href="mailto:contato@msgestaotecnologia.com.br" data-track="clique_email">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
+          <span><small>Escrever um e-mail</small><b>contato@msgestaotecnologia.com.br</b></span>
+        </a>
+        <div class="c-item reveal" style="--i:2">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <span><small>Atendimento</small><b>Segunda a sexta, 8h às 18h · Loanda/PR</b></span>
         </div>
       </div>
     </div>
-    <div class="contato-cta">
+
+    <form class="card reveal right" id="form-contato" novalidate>
       <h3>Solicite um diagnóstico</h3>
-      <p>Escolha o canal mais cômodo para você. É rápido e sem compromisso.</p>
-      <a href="https://wa.me/5544999069725?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20diagn%C3%B3stico%20com%20a%20MS%20Gest%C3%A3o%20%26%20Tecnologia." target="_blank" rel="noopener" class="cta-btn cta-whats" data-track="clique_whatsapp">
-        <i class="ti ti-brand-whatsapp"></i>
-        <div>
-          <div class="cta-btn-label">Conversar agora pelo</div>
-          <div class="cta-btn-valor">WhatsApp</div>
-        </div>
-        <i class="ti ti-arrow-right cta-arrow"></i>
-      </a>
-      <a href="mailto:contato@msgestaotecnologia.com.br" class="cta-btn cta-mail" data-track="clique_email">
-        <i class="ti ti-mail"></i>
-        <div>
-          <div class="cta-btn-label">Escrever um</div>
-          <div class="cta-btn-valor">contato@msgestaotecnologia.com.br</div>
-        </div>
-        <i class="ti ti-arrow-right cta-arrow"></i>
-      </a>
-      <div class="contato-divisor">ou deixe seu contato</div>
-      <form class="contato-form" id="form-contato">
-        <input type="text" name="nome" placeholder="Seu nome" required maxlength="150">
-        <input type="text" name="contato" placeholder="E-mail ou telefone" required maxlength="120">
-        <textarea name="mensagem" placeholder="Como podemos ajudar? (opcional)" maxlength="2000"></textarea>
-        <button type="submit">Enviar</button>
-        <div class="contato-form-msg" id="form-contato-msg"></div>
-      </form>
-      <div class="contato-nota">
-        <i class="ti ti-clock-hour-4"></i>
-        <span>Atendimento de segunda a sexta, das 8h às 18h. Retorno em até 24 horas úteis.</span>
+      <p>Deixe seu contato e retornamos em até 24 horas úteis.</p>
+      <div class="row2">
+        <div class="field"><input id="f-nome" name="nome" placeholder=" " required maxlength="150" autocomplete="name"><label for="f-nome">Seu nome</label></div>
+        <div class="field"><input id="f-contato" name="contato" placeholder=" " required maxlength="120" autocomplete="email"><label for="f-contato">E-mail ou telefone</label></div>
       </div>
-    </div>
+      <div class="field">
+        <select id="f-int" name="interesse">
+          <option>Ainda não sei — quero um diagnóstico</option>
+          <option>Gestão Financeira</option><option>Consultoria em TI</option><option>Reestruturação de Processos</option>
+          <option>Consultoria para Setor Público</option><option>Planejamento Estratégico</option><option>Conformidade &amp; Compliance</option>
+        </select><label for="f-int">Interesse principal</label>
+      </div>
+      <div class="field"><textarea id="f-msg" name="mensagem" placeholder=" " maxlength="1900"></textarea><label for="f-msg">Como podemos ajudar? (opcional)</label></div>
+      <label class="consent"><input type="checkbox" id="f-ok" required> Autorizo a MS Gestão &amp; Tecnologia a usar estes dados apenas para retornar meu contato, conforme a LGPD.</label>
+      <button class="btn btn-primary" type="submit"><span class="lbl">Enviar</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+      <div class="form-msg" id="form-contato-msg" role="status"></div>
+    </form>
   </div>
 </section>
+</main>
 
-<!-- FOOTER -->
+
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="footer-logo">
-        <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
-          <circle cx="22" cy="22" r="16" fill="none" stroke="#1B5E96" stroke-width="2.5"/>
-          <circle cx="38" cy="22" r="16" fill="none" stroke="#4AAEE8" stroke-width="2.5"/>
-          <circle cx="30" cy="36" r="16" fill="none" stroke="#1DAF6E" stroke-width="2.5"/>
-          <circle cx="30" cy="27" r="3.5" fill="#1DAF6E"/>
-        </svg>
-        <div>
-          <div class="footer-logo-ms">MS Gestão &amp; Tecnologia</div>
-          <span class="footer-logo-sub">Milaré &amp; Souza Consultoria Ltda.</span>
-        </div>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a href="#inicio" class="brand" style="margin-bottom:14px"><svg class="logo" viewBox="0 0 60 60" fill="none" aria-hidden="true"><g class="nc1"><circle cx="22" cy="22" r="16" stroke="#1B5E96" stroke-width="3"/></g><g class="nc2"><circle cx="38" cy="22" r="16" stroke="#4AAEE8" stroke-width="3"/></g><g class="nc3"><circle cx="30" cy="36" r="16" stroke="#1DAF6E" stroke-width="3"/></g><circle class="core" cx="30" cy="27" r="4" fill="#1DAF6E"/></svg><span>MS Gestão &amp; Tecnologia</span></a>
+        <p>Milaré &amp; Souza Consultoria Ltda.<br>Consultoria empresarial e de TI · Loanda/PR</p>
       </div>
-      <p>Consultoria integrada em gestão empresarial e tecnologia da informação.</p>
+      <div><h4>Navegação</h4><ul><li><a href="#sobre">Sobre</a></li><li><a href="#servicos">Serviços</a></li><li><a href="#segmentos">Segmentos</a></li><li><a href="#noticias">Notícias</a></li><li><a href="#contato">Contato</a></li></ul></div>
+      <div><h4>Serviços</h4><ul><li>Gestão Financeira</li><li>Consultoria em TI</li><li>Processos</li><li>Setor Público</li><li>Planejamento</li><li>Compliance / LGPD</li></ul></div>
+      <div><h4>Contato</h4><ul><li><a href="https://wa.me/5544999069725" target="_blank" rel="noopener" data-track="clique_whatsapp">(44) 99906-9725</a></li><li><a href="mailto:contato@msgestaotecnologia.com.br" data-track="clique_email">contato@msgestaotecnologia.com.br</a></li><li>Seg–Sex, 8h–18h</li><li><a href="https://sistema.msgestaotecnologia.com.br" rel="noopener">Acesso restrito ao sistema</a></li></ul></div>
     </div>
-    <div class="footer-links">
-      <h4>Navegação</h4>
-      <ul>
-        <li><a href="#sobre">Sobre nós</a></li>
-        <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#segmentos">Segmentos</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
+    <div class="f-bottom">
+      <span>© <span id="ano">2026</span> MS Gestão &amp; Tecnologia · Milaré &amp; Souza Consultoria Ltda.</span>
+      <span>CNAE 70.20-4/00 · 62.04-0/00 · Simples Nacional</span>
     </div>
-    <div class="footer-links">
-      <h4>Serviços</h4>
-      <ul>
-        <li><a href="#servicos">Gestão Financeira</a></li>
-        <li><a href="#servicos">Consultoria em TI</a></li>
-        <li><a href="#servicos">Setor Público</a></li>
-        <li><a href="#servicos">Compliance &amp; LGPD</a></li>
-      </ul>
-    </div>
-    <div class="footer-links">
-      <h4>Contato</h4>
-      <ul>
-        <li><a href="https://wa.me/5544999069725" target="_blank" rel="noopener">WhatsApp</a></li>
-        <li><a href="mailto:contato@msgestaotecnologia.com.br">contato@msgestaotecnologia.com.br</a></li>
-        <li><a href="#contato">Solicitar diagnóstico</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 Milaré &amp; Souza Consultoria Ltda. Todos os direitos reservados.</p>
-    <span style="font-family:'Inter',sans-serif;font-size:11.5px;color:rgba(255,255,255,0.28);">CNAE 70.20-4/00 · 62.04-0/00 · Simples Nacional · Loanda, PR &nbsp;·&nbsp; <a href="https://sistema.msgestaotecnologia.com.br" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.18);text-decoration:none;" title="Acesso restrito">⚙</a></span>
   </div>
 </footer>
 
+<a class="fab" href="https://wa.me/5544999069725?text=Ol%C3%A1!%20Vim%20pelo%20site." target="_blank" rel="noopener" aria-label="Conversar no WhatsApp" data-track="clique_whatsapp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+</a>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  $('#ano').textContent = new Date().getFullYear();
+
+  /* ---------- header, progress, fab, active link ---------- */
+  const header = $('header.site'), bar = $('.progress'), fab = $('.fab');
+  const links = $$('.menu a[href^="#"]');
+  const sections = links.map(a => $(a.getAttribute('href'))).filter(Boolean);
+  let ticking = false;
+  function onScroll() {
+    const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    header.classList.toggle('scrolled', y > 30);
+    bar.style.transform = `scaleX(${h > 0 ? y / h : 0})`;
+    fab.classList.toggle('show', y > innerHeight * .6);
+    let cur = null;
+    for (const s of sections) if (s.getBoundingClientRect().top <= 120) cur = s.id;
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+    ticking = false;
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  /* ---------- mobile menu ---------- */
+  const burger = $('.burger'), menu = $('#menu');
+  const toggle = open => { menu.classList.toggle('open', open); burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu'); };
+  burger.addEventListener('click', () => toggle(!menu.classList.contains('open')));
+  menu.addEventListener('click', e => { if (e.target.closest('a')) toggle(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+
+  /* ---------- reveal on scroll + counters ---------- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in');
+      $$('[data-count]', en.target).forEach(countUp);
+      io.unobserve(en.target);
+    });
+  }, { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+  $$('.reveal').forEach(el => io.observe(el));
+  function countUp(el) {
+    const end = +el.dataset.count, dur = reduce ? 0 : 1400, t0 = performance.now();
+    const step = t => { const p = dur ? Math.min(1, (t - t0) / dur) : 1; el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- rotating words ---------- */
+  const words = $$('.rotator span');
+  if (!reduce && words.length > 1) {
+    let i = 0;
+    setInterval(() => {
+      const cur = words[i]; cur.classList.remove('on'); cur.classList.add('out');
+      setTimeout(() => cur.classList.remove('out'), 500);
+      i = (i + 1) % words.length; words[i].classList.add('on');
+    }, 2600);
+  }
+
+  /* ---------- tilt hero panel ---------- */
+  const tilt = $('#tilt');
+  if (tilt && !reduce && matchMedia('(hover:hover)').matches) {
+    $('.hero').addEventListener('pointermove', e => {
+      const r = tilt.getBoundingClientRect();
+      const x = (e.clientX - (r.left + r.width / 2)) / innerWidth, y = (e.clientY - (r.top + r.height / 2)) / innerHeight;
+      tilt.style.setProperty('--ry', (x * 14).toFixed(2) + 'deg');
+      tilt.style.setProperty('--rx', (-y * 10).toFixed(2) + 'deg');
+    });
+    $('.hero').addEventListener('pointerleave', () => { tilt.style.setProperty('--ry', '0deg'); tilt.style.setProperty('--rx', '0deg'); });
+  }
+
+  /* ---------- spotlight on service cards ---------- */
+  $$('.svc').forEach(c => c.addEventListener('pointermove', e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }));
+
+  /* ---------- network canvas in hero ---------- */
+  const cv = $('#net'), ctx = cv.getContext('2d');
+  let W, H, pts = [], raf, running = true, mouse = { x: -999, y: -999 };
+  const DPR = Math.min(devicePixelRatio || 1, 2);
+  function size() {
+    W = cv.clientWidth; H = cv.clientHeight; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    const n = Math.round(Math.min(90, W * H / 16000));
+    pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 }));
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
+      const dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.hypot(dx, dy);
+      if (d < 120) { p.x += dx / d * .8; p.y += dy / d * .8; }
+    }
+    for (let i = 0; i < pts.length; i++) {
+      const a = pts[i];
+      for (let j = i + 1; j < pts.length; j++) {
+        const b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < 130) { ctx.strokeStyle = `rgba(74,174,232,${(1 - d / 130) * .35})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+      }
+      ctx.fillStyle = 'rgba(29,175,110,.85)'; ctx.beginPath(); ctx.arc(a.x, a.y, 1.8, 0, Math.PI * 2); ctx.fill();
+    }
+    if (running && !reduce) raf = requestAnimationFrame(draw);
+  }
+  size(); draw();
+  let rs; addEventListener('resize', () => { clearTimeout(rs); rs = setTimeout(() => { size(); if (reduce) draw(); }, 200); });
+  $('.hero').addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  $('.hero').addEventListener('pointerleave', () => { mouse.x = mouse.y = -999; });
+  new IntersectionObserver(([en]) => {
+    const vis = en.isIntersecting && !document.hidden;
+    if (vis && !running) { running = true; cancelAnimationFrame(raf); draw(); } else if (!vis) running = false;
+  }).observe(cv);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) running = false; else if (cv.getBoundingClientRect().bottom > 0) { running = true; cancelAnimationFrame(raf); draw(); } });
+
+  /* ---------- segment tabs ---------- */
+  const tabs = $$('[role="tab"]'), pill = $('.seg-tabs .pill');
+  function placePill(t) { pill.style.width = t.offsetWidth + 'px'; pill.style.transform = `translateX(${t.offsetLeft - 5}px)`; }
+  function select(t) {
+    tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; $('#' + x.getAttribute('aria-controls')).hidden = !on; });
+    placePill(t);
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); select(n); } });
+  });
+  requestAnimationFrame(() => placePill(tabs[0]));
+  addEventListener('resize', () => placePill($('[role="tab"][aria-selected="true"]')));
+  document.fonts && document.fonts.ready.then(() => placePill($('[role="tab"][aria-selected="true"]')));
+
+  /* ---------- news (reads noticias.json gerado pelo coletor no servidor) ---------- */
+  const grid = $('#news'), filters = $('#filters'), upd = $('#news-updated');
+  const MAX = 9;
+  let all = [], cat = 'todas';
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const safeUrl = u => /^https:\/\//i.test(u) ? u : '#';
+  const rel = iso => {
+    const d = new Date(iso); if (isNaN(d)) return '';
+    const m = Math.round((Date.now() - d) / 60000);
+    if (m < 60) return `há ${Math.max(m, 1)} min`; if (m < 1440) return `há ${Math.round(m / 60)} h`;
+    const dd = Math.round(m / 1440); return dd === 1 ? 'ontem' : dd < 7 ? `há ${dd} dias` : d.toLocaleDateString('pt-BR');
+  };
+  function render() {
+    const list = (cat === 'todas' ? all : all.filter(n => n.categoria === cat)).slice(0, MAX);
+    grid.setAttribute('aria-busy', 'false');
+    if (!list.length) { grid.innerHTML = '<div class="news-empty">Nenhuma notícia disponível neste tema no momento.</div>'; return; }
+    grid.innerHTML = list.map((n, i) => `
+      <a class="news-card" style="--i:${i}" href="${esc(safeUrl(n.link))}" target="_blank" rel="noopener nofollow">
+        <div class="news-meta"><span class="src" style="--c:${esc(n.cor || '#1DAF6E')}"><i></i>${esc(n.fonte)}</span><span>${esc(rel(n.data))}</span></div>
+        <h3>${esc(n.titulo)}</h3>
+        ${n.resumo ? `<p>${esc(n.resumo)}</p>` : ''}
+        <div class="news-foot-row"><span class="cat">${esc(n.categoria)}</span><span class="more">Ler matéria
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+      </a>`).join('');
+  }
+  function buildFilters() {
+    const cats = [...new Set(all.map(n => n.categoria))];
+    filters.innerHTML = ['todas', ...cats].map(c => `<button data-cat="${esc(c)}" aria-pressed="${c === cat}">${c === 'todas' ? 'Todas' : esc(c)}</button>`).join('');
+  }
+  filters.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    cat = b.dataset.cat; $$('button', filters).forEach(x => x.setAttribute('aria-pressed', x === b)); render();
+  });
+  fetch('noticias.json?v=' + Math.floor(Date.now() / 600000), { cache: 'no-cache' })
+    .then(r => { if (!r.ok) throw 0; return r.json(); })
+    .then(j => {
+      all = (j.itens || []).filter(n => n.titulo && n.link).sort((a, b) => String(b.data || '').localeCompare(String(a.data || '')));
+      buildFilters(); render();
+      if (j.atualizado_em) upd.textContent = 'Atualizado ' + rel(j.atualizado_em) + ' · fontes: ' + [...new Set(all.map(n => n.fonte))].join(', ');
+    })
+    .catch(() => {
+      grid.setAttribute('aria-busy', 'false');
+      grid.innerHTML = '<div class="news-empty">As notícias estão temporariamente indisponíveis. Volte em instantes.</div>';
+      upd.textContent = '';
+    });
+})();
+</script>
 <!-- ── Rastreamento (Sistema MS Gestao, funil de vendas) ──────────────────
      Manda visita de pagina + clique nos CTAs de WhatsApp/e-mail pro
      sistema (POST /track/evento, fire-and-forget via sendBeacon), pra
@@ -752,20 +901,39 @@ footer { background: var(--grafite); padding: 48px 6% 32px; }
       ev.preventDefault();
       var msgEl = document.getElementById('form-contato-msg');
       var botao = form.querySelector('button');
+      var lbl = botao.querySelector('.lbl');
+      var nome = form.nome.value.trim();
       var contato = form.contato.value.trim();
+
+      // validacao simples no navegador
+      form.nome.parentNode.classList.toggle('bad', !nome);
+      form.contato.parentNode.classList.toggle('bad', !contato);
+      if (!nome || !contato) {
+        msgEl.className = 'form-msg erro';
+        msgEl.textContent = 'Informe seu nome e um e-mail ou telefone.';
+        return;
+      }
+      if (!document.getElementById('f-ok').checked) {
+        msgEl.className = 'form-msg erro';
+        msgEl.textContent = 'Para enviar, marque a autorização de contato (LGPD).';
+        return;
+      }
+
+      var interesse = form.interesse ? form.interesse.value : '';
+      var mensagem = form.mensagem.value.trim();
       var payload = {
         site_token: SITE_TOKEN,
-        nome: form.nome.value.trim(),
+        nome: nome,
         email: contato.indexOf('@') !== -1 ? contato : '',
         telefone: contato.indexOf('@') === -1 ? contato : '',
-        mensagem: form.mensagem.value.trim(),
+        mensagem: (interesse ? '[Interesse: ' + interesse + '] ' : '') + mensagem,
         utm_source: utm('utm_source'),
         sessao_id: sessaoId(),
       };
 
       botao.disabled = true;
-      botao.textContent = 'Enviando...';
-      msgEl.style.display = 'none';
+      lbl.textContent = 'Enviando...';
+      msgEl.className = 'form-msg';
 
       fetch('https://sistema.msgestaotecnologia.com.br/track/lead', {
         method: 'POST',
@@ -774,29 +942,26 @@ footer { background: var(--grafite); padding: 48px 6% 32px; }
       })
         .then(function (r) { return r.json(); })
         .then(function (d) {
-          msgEl.style.display = 'block';
           if (d.ok) {
-            msgEl.className = 'contato-form-msg ok';
+            msgEl.className = 'form-msg ok';
             msgEl.textContent = 'Recebemos seu contato! Retornaremos em breve.';
             form.reset();
           } else {
-            msgEl.className = 'contato-form-msg erro';
-            msgEl.textContent = d.erro || 'Nao foi possivel enviar. Tente pelo WhatsApp.';
+            msgEl.className = 'form-msg erro';
+            msgEl.textContent = d.erro || 'Não foi possível enviar. Tente pelo WhatsApp.';
           }
         })
         .catch(function () {
-          msgEl.style.display = 'block';
-          msgEl.className = 'contato-form-msg erro';
-          msgEl.textContent = 'Nao foi possivel enviar agora. Tente pelo WhatsApp.';
+          msgEl.className = 'form-msg erro';
+          msgEl.textContent = 'Não foi possível enviar agora. Tente pelo WhatsApp.';
         })
         .finally(function () {
           botao.disabled = false;
-          botao.textContent = 'Enviar';
+          lbl.textContent = 'Enviar';
         });
     });
   }
 })();
 </script>
-
 </body>
 </html>
