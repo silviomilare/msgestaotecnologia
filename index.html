@@ -298,6 +298,30 @@ footer a:hover{color:var(--teal)}
 .fab svg{width:30px;height:30px}
 
 /* ---------- responsive ---------- */
+.pl-mods{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:44px}
+.pl-mod{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.pl-mod b{display:block;color:var(--navy-800);font-size:15px}
+.pl-mod span{color:var(--muted);font-size:14px;line-height:1.5}
+.pl-mod i{flex:none;width:34px;height:34px;border-radius:10px;background:rgba(29,175,110,.12);color:var(--teal-600);display:grid;place-items:center;font-style:normal;font-weight:800}
+.pl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.pl{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow)}
+.pl.destaque{border:2px solid var(--teal);transform:translateY(-6px)}
+.pl .selo{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--teal);color:var(--navy-900);font-size:12px;font-weight:800;padding:4px 12px;border-radius:999px;white-space:nowrap}
+.pl h3{color:var(--navy-800);font-size:1.25rem;margin:0}
+.pl .preco{font-size:2.2rem;font-weight:800;color:var(--navy-800);letter-spacing:-.03em}
+.pl .preco small{font-size:1rem;font-weight:600;color:var(--muted)}
+.pl ul{list-style:none;padding:0;margin:4px 0 8px;display:grid;gap:8px;color:var(--ink);font-size:15px}
+.pl li::before{content:"✓";color:var(--teal-600);font-weight:800;margin-right:8px}
+.pl .btn{margin-top:auto;justify-content:center}
+.pl-nota{text-align:center;color:var(--muted);font-size:14px;margin-top:22px}
+.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:300;max-width:760px;margin:0 auto;background:var(--navy-900);color:#e5edf7;border-radius:16px;padding:16px 18px;box-shadow:0 20px 40px -12px rgba(0,0,0,.45);display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:14px;line-height:1.5}
+.cookie-bar[hidden]{display:none}
+.pl .btn-ghost{color:var(--navy-800);border-color:var(--line)}
+.pl .btn-ghost:hover{background:var(--bg)}
+.cookie-bar p{margin:0;flex:1 1 320px}
+.cookie-bar a{color:var(--teal)}
+.cookie-bar .btn{padding:10px 18px}
+.cookie-bar .btn-sec{background:transparent;color:#e5edf7;border:1px solid rgba(255,255,255,.35)}
 @media (max-width:1024px){
   .hero .wrap{grid-template-columns:1fr}
   .hero-card{max-width:520px}
@@ -308,6 +332,7 @@ footer a:hover{color:var(--teal)}
   .f-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:860px){
+  .pl-grid,.pl-mods{grid-template-columns:1fr} .pl.destaque{transform:none}
   .burger{display:inline-flex}
   .menu{position:fixed;inset:0 0 0 auto;width:min(320px,86vw);flex-direction:column;align-items:stretch;gap:4px;padding:90px 22px 24px;background:var(--navy-900);transform:translateX(100%);transition:transform .45s var(--ease);box-shadow:-20px 0 40px -20px rgba(0,0,0,.6)}
   .menu.open{transform:none}
@@ -355,6 +380,7 @@ footer a:hover{color:var(--teal)}
     <nav class="menu" id="menu" aria-label="Principal">
       <a href="#sobre">Sobre</a>
       <a href="#servicos">Serviços</a>
+      <a href="#sistema">Sistema</a>
       <a href="#segmentos">Segmentos</a>
       <a href="#noticias">Notícias</a>
       <a href="#contato">Contato</a>
@@ -488,6 +514,40 @@ footer a:hover{color:var(--teal)}
         <span class="tag">Empresas · Privado</span>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ================= SISTEMA + PLANOS ================= -->
+<section id="sistema" aria-labelledby="sistema-t">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="kicker">Sistema MS Gestão</span>
+      <h2 id="sistema-t">A gestão da sua empresa num só lugar</h2>
+      <p>Sistema online para empresas de serviço do Simples Nacional: financeiro, NFS-e, impostos e demonstrativos contábeis. Teste grátis por 14 dias, sem cartão de crédito.</p>
+    </div>
+    <div class="pl-mods"><div class="pl-mod reveal" style="--i:0"><i aria-hidden="true">$</i><div><b>Financeiro completo</b><span>Contas a pagar e a receber, fluxo de caixa, cobrança de atrasados e conciliação bancária com regras automáticas.</span></div></div><div class="pl-mod reveal" style="--i:1"><i aria-hidden="true">NF</i><div><b>NFS-e nacional</b><span>Emissão pelo Emissor Nacional, com envio automático ao cliente por e-mail, cancelamento e substituição.</span></div></div><div class="pl-mod reveal" style="--i:2"><i aria-hidden="true">%</i><div><b>Simples Nacional</b><span>DAS calculado como no PGDAS-D, fator r, faixa de tributação e simulador da reforma tributária.</span></div></div><div class="pl-mod reveal" style="--i:3"><i aria-hidden="true">≡</i><div><b>Demonstrativos contábeis</b><span>DRE, Balanço patrimonial, DLPA e Livro Diário pela NBC TG 1002, em PDF.</span></div></div><div class="pl-mod reveal" style="--i:4"><i aria-hidden="true">↗</i><div><b>Lucros e sócios</b><span>Pró-labore, distribuição de lucros com o limite de isenção e informe de rendimentos por sócio.</span></div></div><div class="pl-mod reveal" style="--i:5"><i aria-hidden="true">⌁</i><div><b>Comercial</b><span>Clientes e fornecedores, contratos com minuta e funil de vendas com propostas em PDF.</span></div></div></div>
+    <div class="pl-grid">
+      <article class="pl reveal" style="--i:0">
+        <h3>Essencial</h3>
+        <div class="preco">R$ 99<small>/mês</small></div>
+        <ul><li>Sistema completo</li><li>Até 2 usuários</li><li>Até 30 NFS-e por mês</li><li>Suporte por e-mail</li></ul>
+        <a class="btn btn-ghost" href="https://sistema.msgestaotecnologia.com.br/assinatura/cadastro?plano=essencial" rel="noopener" data-track="clique_teste_gratis">Testar grátis por 14 dias</a>
+      </article>
+      <article class="pl destaque reveal" style="--i:1">
+        <span class="selo">Mais escolhido</span><h3>Gestão</h3>
+        <div class="preco">R$ 349<small>/mês</small></div>
+        <ul><li>Tudo do Essencial</li><li>Consultoria financeira: 1 reunião mensal de 1 h, com resumo por escrito</li><li>Até 5 usuários</li><li>Até 100 NFS-e por mês</li></ul>
+        <a class="btn btn-primary" href="https://sistema.msgestaotecnologia.com.br/assinatura/cadastro?plano=gestao" rel="noopener" data-track="clique_teste_gratis">Testar grátis por 14 dias</a>
+      </article>
+      <article class="pl reveal" style="--i:2">
+        <h3>Gestão + Contabilidade</h3>
+        <div class="preco">R$ 799<small>/mês</small></div>
+        <ul><li>Tudo do Gestão</li><li>Contabilidade por organização contábil com registro no CRC</li><li>Usuários sem limite</li><li>NFS-e sem limite</li></ul>
+        <a class="btn btn-ghost" href="https://sistema.msgestaotecnologia.com.br/assinatura/cadastro?plano=gestao_contabil" rel="noopener" data-track="clique_teste_gratis">Testar grátis por 14 dias</a>
+      </article>
+    </div>
+    <p class="pl-nota">O sistema é o mesmo em todos os planos; muda o serviço que vem junto. Pagamento por PIX ou cartão. Cancele quando quiser.
+      <a href="https://sistema.msgestaotecnologia.com.br/sistema/termos" rel="noopener">Termos de Uso</a>.</p>
   </div>
 </section>
 
@@ -629,6 +689,12 @@ footer a:hover{color:var(--teal)}
 </main>
 
 
+<div class="cookie-bar" id="cookie-bar" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+  <p>Usamos um identificador no seu navegador e registramos a visita (página, origem e IP) só para entender como o site é encontrado. Nada é usado para publicidade. <a href="https://sistema.msgestaotecnologia.com.br/sistema/privacidade" rel="noopener">Política de Privacidade</a>.</p>
+  <button type="button" class="btn btn-sec" id="cookies-recusar">Recusar</button>
+  <button type="button" class="btn btn-primary" id="cookies-aceitar">Aceitar</button>
+</div>
+
 <footer>
   <div class="wrap">
     <div class="f-grid">
@@ -636,12 +702,13 @@ footer a:hover{color:var(--teal)}
         <a href="#inicio" class="brand" style="margin-bottom:14px"><svg class="logo" viewBox="0 0 60 60" fill="none" aria-hidden="true"><g class="nc1"><circle cx="22" cy="22" r="16" stroke="#1B5E96" stroke-width="3"/></g><g class="nc2"><circle cx="38" cy="22" r="16" stroke="#4AAEE8" stroke-width="3"/></g><g class="nc3"><circle cx="30" cy="36" r="16" stroke="#1DAF6E" stroke-width="3"/></g><circle class="core" cx="30" cy="27" r="4" fill="#1DAF6E"/></svg><span>MS Gestão &amp; Tecnologia</span></a>
         <p>Milaré &amp; Souza Consultoria Ltda.<br>Consultoria empresarial e de TI · Loanda/PR</p>
       </div>
-      <div><h4>Navegação</h4><ul><li><a href="#sobre">Sobre</a></li><li><a href="#servicos">Serviços</a></li><li><a href="#segmentos">Segmentos</a></li><li><a href="#noticias">Notícias</a></li><li><a href="#contato">Contato</a></li></ul></div>
+      <div><h4>Navegação</h4><ul><li><a href="#sobre">Sobre</a></li><li><a href="#servicos">Serviços</a></li><li><a href="#sistema">Sistema e planos</a></li><li><a href="#segmentos">Segmentos</a></li><li><a href="#noticias">Notícias</a></li><li><a href="#contato">Contato</a></li></ul></div>
       <div><h4>Serviços</h4><ul><li>Gestão Financeira</li><li>Consultoria em TI</li><li>Processos</li><li>Setor Público</li><li>Planejamento</li><li>Compliance / LGPD</li></ul></div>
-      <div><h4>Contato</h4><ul><li><a href="https://wa.me/5544999069725" target="_blank" rel="noopener" data-track="clique_whatsapp">(44) 99906-9725</a></li><li><a href="mailto:contato@msgestaotecnologia.com.br" data-track="clique_email">contato@msgestaotecnologia.com.br</a></li><li>Seg–Sex, 8h–18h</li><li><a href="https://sistema.msgestaotecnologia.com.br" rel="noopener">Acesso restrito ao sistema</a></li></ul></div>
+      <div><h4>Contato</h4><ul><li><a href="https://wa.me/5544999069725" target="_blank" rel="noopener" data-track="clique_whatsapp">(44) 99906-9725</a></li><li><a href="mailto:contato@msgestaotecnologia.com.br" data-track="clique_email">contato@msgestaotecnologia.com.br</a></li><li>Seg–Sex, 8h–18h</li><li><a href="https://sistema.msgestaotecnologia.com.br/assinatura/cadastro" rel="noopener" data-track="clique_teste_gratis">Teste grátis por 14 dias</a></li><li><a href="https://sistema.msgestaotecnologia.com.br" rel="noopener">Acesso ao sistema</a></li></ul></div>
     </div>
     <div class="f-bottom">
       <span>© <span id="ano">2026</span> MS Gestão &amp; Tecnologia · Milaré &amp; Souza Consultoria Ltda.</span>
+      <span><a href="https://sistema.msgestaotecnologia.com.br/sistema/termos" rel="noopener">Termos de Uso</a> · <a href="https://sistema.msgestaotecnologia.com.br/sistema/privacidade" rel="noopener">Política de Privacidade</a> · <a href="#" id="cookies-preferencias">Cookies</a></span>
       <span>CNAE 70.20-4/00 · 62.04-0/00 · Simples Nacional</span>
     </div>
   </div>
@@ -841,7 +908,16 @@ footer a:hover{color:var(--teal)}
   var ENDPOINT = 'https://sistema.msgestaotecnologia.com.br/track/evento';
   var SITE_TOKEN = '358ccea5-007f-4b14-bb31-1a183e329702'; // Milare & Souza -- gerado em 25/Jul/2026 pela migration empresa_site_token
 
+  // Consentimento (LGPD, Politica de Privacidade cl. 3.1 e 8): sem
+  // "Aceitar", nada de identificador no navegador nem registro de visita.
+  var CHAVE_CONSENTIMENTO = 'ms_cookies';
+  function consentimento() {
+    try { return localStorage.getItem(CHAVE_CONSENTIMENTO); } catch (e) { return null; }
+  }
+  function aceitou() { return consentimento() === 'aceito'; }
+
   function sessaoId() {
+    if (!aceitou()) return null;
     try {
       var id = localStorage.getItem('ms_sessao_id');
       if (!id) {
@@ -863,6 +939,7 @@ footer a:hover{color:var(--teal)}
   }
 
   function enviar(tipoEvento) {
+    if (!aceitou()) return;
     var payload = JSON.stringify({
       site_token: SITE_TOKEN,
       tipo_evento: tipoEvento,
@@ -882,6 +959,21 @@ footer a:hover{color:var(--teal)}
     } catch (e) {
       // nunca deixar rastreamento quebrar a navegacao do visitante
     }
+  }
+
+  var barra = document.getElementById('cookie-bar');
+  function decidir(valor) {
+    try { localStorage.setItem(CHAVE_CONSENTIMENTO, valor); } catch (e) {}
+    if (valor !== 'aceito') { try { localStorage.removeItem('ms_sessao_id'); } catch (e) {} }
+    barra.hidden = true;
+    if (valor === 'aceito') enviar('visita');
+  }
+  if (barra) {
+    document.getElementById('cookies-aceitar').addEventListener('click', function () { decidir('aceito'); });
+    document.getElementById('cookies-recusar').addEventListener('click', function () { decidir('recusado'); });
+    var pref = document.getElementById('cookies-preferencias');
+    if (pref) pref.addEventListener('click', function (ev) { ev.preventDefault(); barra.hidden = false; });
+    if (!consentimento()) barra.hidden = false;
   }
 
   enviar('visita');
